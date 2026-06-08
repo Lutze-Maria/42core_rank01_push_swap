@@ -9,7 +9,6 @@ REJECT:
 ./push_swap --simple
 ./push_swap --simple ""
 
-
 ACCEPT
 2. Single argument containing numbers as text → call ft_split().
 ./push_swap "1 2 3"
@@ -21,20 +20,8 @@ ACCEPT
 
 
 
-Is first argument a bench flag?
-	If yes:
-		is there data after it?
-		is data one string or multiple arguments?
-	If no:
-		is there data?
-		is data one string or multiple arguments?
 
-
-
-
-
-
-// All correct:
+// All CORRECT:
 ./push_swap
 ./push_swap 42
 ./push_swap -42
@@ -55,7 +42,8 @@ Is first argument a bench flag?
 ./push_swap 10 2 3
 ./push_swap "3 0 1"
 
-//Error Cases:
+
+//ERROR Cases:
 ./push_swap ""
 ./push_swap "   "
 ./push_swap "	   	"

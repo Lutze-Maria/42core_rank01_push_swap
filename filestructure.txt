@@ -1,0 +1,47 @@
+
+── src/
+│   ├── main.c
+│   │
+│   ├── parsing/
+│   │   ├── collect_input.c
+│   │   ├── validate_tokens.c
+│   │   ├── convert_to_ints.c
+│   │   ├── duplicate_check.c
+│   │   └── parser_utils.c
+│   │
+│   ├── stack/
+│   │   ├── stack_init.c
+│   │   ├── stack_utils.c
+│   │   └── stack_free.c
+│   │
+│   ├── operations/
+│   │   ├── sa.c
+│   │   ├── sb.c
+│   │   ├── ss.c
+│   │   ├── pa.c
+│   │   ├── pb.c
+│   │   ├── ra.c
+│   │   ├── rb.c
+│   │   ├── rr.c
+│   │   ├── rra.c
+│   │   ├── rrb.c
+│   │   └── rrr.c
+│   │
+│   ├── sorting/
+│   │   ├── sort_two.c
+│   │   ├── sort_three.c
+│   │   ├── sort_five.c
+│   │   ├── ...
+│   │   └── ...
+│   │
+│   ├── utils/
+│   │   ├── error.c
+│   │   ├── memory.c
+│   │   └── utils.c
+│   │
+│   └── bonus/
+│       ├── checker.c
+│       ├── checker_parser.c
+│       └── checker_ops.c
+
+
