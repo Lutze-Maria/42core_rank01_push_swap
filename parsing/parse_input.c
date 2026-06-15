@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   collect_input.c                                    :+:      :+:    :+:   */
+/*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 18:34:17 by lschawer          #+#    #+#             */
-/*   Updated: 2026/06/08 15:46:11 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/06/12 15:34:31 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,28 @@ int	contains_space(char *s)
 	return (0);
 }
 
-char	**ft_dup_argv(char **argv)
+char	**ft_dup_argv(int argc, char **argv, char is_bench)
 {
 	//counts arguments
 	//allocates new char **
 	//duplicates strings with ft_strdup
 	//NULL-terminates properly
+	char	**tokens;
+	int		i;
+
+	if (!argv)
+		return ;
+	i = 0;
+	while (argv[i])
+	{
+		ft_strdup(token[i]; argv[i])
+		i++;
+	}
+	tokens[i] = '\0';
+	return (tokens);
 }
 
-char	**collect_input(int argc, char **argv, char is_bench)
+char	**parse_input(int argc, char **argv, char is_bench)
 {
 	int		start;
 	char	**tokens;
