@@ -11,7 +11,7 @@ t_stack_node    *find_last_node(t_stack_node *head)
 }
 
 // search for last node, append
-void	append_node(char **stack, int nbr)
+void	append_node(t_stack_node **stack, int nbr)
 {
 	t_stack_node    *node;
     t_stack_node    *last_node;
@@ -26,7 +26,7 @@ void	append_node(char **stack, int nbr)
     if (!*stack)
     {
         *stack = node;
-        node->prev = NULL:
+        node->prev = NULL;
     }
     else
     {
@@ -62,7 +62,7 @@ int stack_len(t_stack_node *stack)
     int count;
 
     if (!stack)
-        return (NULL);
+        return (0);
     count = 0;
     while (stack)
     {
@@ -72,3 +72,24 @@ int stack_len(t_stack_node *stack)
     return (count);
 }
 
+void    assign_index(t_stack_node *stack)
+{
+	t_stack_node	*current;
+	t_stack_node	*compare;
+	int				index;
+
+	current = stack;
+	while (current)
+	{
+		index = 0;
+		compare = stack;
+		while (compare)
+		{
+			if (compare->value < current->value)
+				index++;
+			compare = compare->next;
+		}
+		current->index = index;
+		current = current->next;
+	}
+}

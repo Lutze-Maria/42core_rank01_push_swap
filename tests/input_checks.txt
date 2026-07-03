@@ -14,7 +14,7 @@ ACCEPT
 ./push_swap "1 2 3"
 ./push_swap --simple "1 2 3"
 
-3. Multiple arguments (int) already separated by the shell → do not call ft_split(), just continue.
+3. Multiple arguments (int) already separated by the shell
 ./push_swap 1 2 3
 ./push_swap --simple 1 2 3
 

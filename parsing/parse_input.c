@@ -6,145 +6,114 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 18:34:17 by lschawer          #+#    #+#             */
-/*   Updated: 2026/06/12 15:34:31 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/02 15:28:21 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "libft/libft.h"
+#include "push_swap.h"
 
-char	check_bench(char *bench)
+t_flag check_flag(char *flag)
 {
-	if (ft_strncmp(bench, "--simple", 8) == 0)
-		return ('s');
-	if (ft_strncmp(bench, "--medium", 8) == 0)
-		return ('m');
-	if (ft_strncmp(bench, "--complex", 9) == 0)
-		return ('c');
-	if (ft_strncmp(bench, "--adaptive", 10) == 0)
-		return ('a');
-	else
-		return ('n');
+    if (!flag)
+        return (FLAG_INVALID);
+    if (ft_strncmp(flag, "--simple", 9) == 0)
+        return (FLAG_SIMPLE);
+    if (ft_strncmp(flag, "--medium", 9) == 0)
+        return (FLAG_MEDIUM);
+    if (ft_strncmp(flag, "--complex", 10) == 0)
+        return (FLAG_COMPLEX);
+    if (ft_strncmp(flag, "--adaptive", 11) == 0)
+        return (FLAG_ADAPTIVE);
+    return (FLAG_INVALID);
 }
 
-int	is_only_spaces(char *s)
+t_config	parse_config(int argc, char **argv)
 {
-	int	i;
+    t_config cfg;
 
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i] && (s[i] == ' ' || s[i] == '\t'))
-		i++;
-	if (s[i] == '\0')
-		return (0);
-	return (1);
+    cfg.flag = FLAG_ADAPTIVE;
+    cfg.start = 1;
+    if (argc > 1 && argv[1][0] == '-')
+    {
+        t_flag tmp = check_flag(argv[1]);
+        if (tmp == FLAG_INVALID)
+        {
+            printf("Flag unknown\n");
+            exit(1);
+        }
+        cfg.flag = tmp;
+        cfg.start = 2;
+    }
+    return cfg;
 }
 
-int	contains_space(char *s)
+char *join_args(int argc, char **argv, int start)
 {
-	int	i;
+	char *result = NULL;
+	char *tmp;
+	int i = start;
 
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
+	while (i < argc)
 	{
-		if (s[i] == ' ')
-			return (1);
-		i++;
-	}
-	return (0);
-}
+		tmp = result;
+		result = ft_strjoin(result ? result : "", argv[i]);
+		free(tmp);
 
-char	**ft_dup_argv(int argc, char **argv, char is_bench)
-{
-	//counts arguments
-	//allocates new char **
-	//duplicates strings with ft_strdup
-	//NULL-terminates properly
-	char	**tokens;
-	int		i;
-
-	if (!argv)
-		return ;
-	i = 0;
-	while (argv[i])
-	{
-		ft_strdup(token[i]; argv[i])
+		if (i < argc - 1)
+		{
+			tmp = result;
+			result = ft_strjoin(result, " ");
+			free(tmp);
+		}
 		i++;
 	}
-	tokens[i] = '\0';
-	return (tokens);
+	return result;
 }
 
-char	**parse_input(int argc, char **argv, char is_bench)
+char **parse_input(int argc, char **argv, int start)
 {
-	int		start;
-	char	**tokens;
-
-	// determine where numeric arguments start
-	start = (is_bench != 'n') ? 2 : 1;
-
-	// no input at all (with o without bench)
-	if (argc <= start || !argv[start] || argv[start][0] == '\0')
-		return (NULL);
-
-	// reject empty str or string with only ' '
-	if (!argv[start] || argv[start][0] == '\0' || is_only_spaces(argv[start]))
-		return (NULL);
-
-	// case 1: single string that needs splitting
-	if (argc - start == 1 && contains_space(argv[start]))
-	{
-		tokens = ft_split(argv[start], ' ');
-		if (!tokens)
-			return (NULL);
-		return (tokens);
-	}
-
-	// case 2: already separated arguments
-	tokens = ft_dup_argv(&argv[start]);
-	if (!tokens)
-		return (NULL);
-	return (tokens);
+    char    *joined;
+    char    **tokens;
+    
+    if (argc <= start)
+        return (NULL);
+    joined = join_args(argc, argv, start);
+    tokens = ft_split(joined, ' ');
+    free(joined);
+    return (tokens);
 }
 
-
-
-// TEST check_bench only
-/* 
-int	main(int argc, char *argv[])
+void free_tokens(char **tokens)
 {
-	char	*bench;
-
-	bench = check_bench(argv[1]);
-	printf("Bench flag used: %s\n", bench);
-	return (0);
+    int i = 0;
+    if (!tokens)
+        return;
+    while (tokens[i])
+        free(tokens[i++]);
+    free(tokens);
 }
- */
-
-// TEST check_norm_input
-int	main(int argc, char *argv[])
+/*
+int main(int argc, char **argv)
 {
-	int		i;
-	int		is_bench;
-	char	**numbers;
+    t_config cfg;
+    char **tokens;
+    int i;
 
-	is_bench = 'n';
-	if (argc > 1)
-		is_bench = check_bench(argv[1]);
-	numbers = collect_input(argc, argv, is_bench);
-	i = 0;
-	while (numbers[i])
-	{
-		printf("%s\n", numbers[i]);
-		i++;
-	}
-	return (0);
-}
+    cfg = parse_config(argc, argv);
+    tokens = parse_input(argc, argv, cfg.start);
+    if (!tokens)
+    {
+        printf("Error while parsing!\n");
+        return (1);
+    }
+    i = 0;
+    while (tokens[i])
+    {
+        printf("%s\n", tokens[i]);
+        i++;
+    }
+    return (0);
+}*/
 
 
-
-
-
+// cc -Wall -Wextra -Werror test_parser.c ft_split.c parse_input.c ../libft/libft.a -I../libft -I.. -o test_parser

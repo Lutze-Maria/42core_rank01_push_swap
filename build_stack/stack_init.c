@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:44:17 by lschawer          #+#    #+#             */
-/*   Updated: 2026/06/12 15:17:54 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/02 14:50:33 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static long	ft_atol(const char *str)
 		over/underflow
 		syntax errors
  */
+
 void	stack_init(t_stack_node **a, char **num_array)
 {
 	long	nbr;
@@ -53,24 +54,29 @@ void	stack_init(t_stack_node **a, char **num_array)
 	i = 0;
 	while (num_array[i])
 	{
-		if (error_syntax(num_array[i]))
-			error_free(a, num_array);
+		if (!error_syntax(num_array[i]))
+		{
+			printf("Error: Wrong Syntax\n");
+			free_stack(a);
+			//error_free(a, num_array);
+			return ;
+		}
 		nbr = ft_atol(num_array[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)
-			error_free(a, num_array);
+		{
+			printf("Error: Overflow\n");
+			free_stack(a);
+			//	error_free(a, num_array);
+			return ;
+		}
 		if (error_duplicate(*a, (int)nbr))
-			error_free(a, num_array);
+		{
+			printf("Error: Duplicate\n");
+			free_stack(a);
+			//	error_free(a, num_array);
+			return ;
+		}
 		append_node(a, (int)nbr);
 		i++;
 	}
 }
-
-/*
-{
-	free_stack(&a);
-	write(2, "Error\n", 6);
-	return (1);
-}
-	append_node(&a, (int)nbr)
-*/
-

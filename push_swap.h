@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:47:17 by lschawer          #+#    #+#             */
-/*   Updated: 2026/06/11 14:28:39 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/03 12:58:53 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,12 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 # include <stdbool.h>
 # include "libft/libft.h"
+
+// zum debuggen
+# include <stdio.h>
 
 typedef struct s_stack_node
 {
@@ -26,10 +30,68 @@ typedef struct s_stack_node
 	struct s_stack_node	*prev;
 }	t_stack_node;
 
-// functions
+typedef enum e_flag
+{
+    FLAG_SIMPLE,
+    FLAG_MEDIUM,
+    FLAG_COMPLEX,
+    FLAG_ADAPTIVE,
+    FLAG_INVALID
+} t_flag;
+
+typedef struct s_config
+{
+    t_flag	flag;
+    int     start;
+} t_config;
+
+// parsing
+t_flag 			check_flag(char *flag);
+t_config		parse_config(int argc, char **argv);
+char 			*join_args(int argc, char **argv, int start);
+char 			**parse_input(int argc, char **argv, int start);
+void 			free_tokens(char **tokens);
+
+char			**ft_split(char const *s, char c);
+
+// stack initiation
+void			stack_init(t_stack_node **a, char **num_array);
+int				error_syntax(char *str);
+int				error_duplicate(t_stack_node *a, int new_nbr);
+
+// nodes
+void			append_node(t_stack_node **stack, int nbr);
+t_stack_node	*find_smallest(t_stack_node *stack);
+t_stack_node    *find_last_node(t_stack_node *head);
+
+// stack utils
+int				stack_len(t_stack_node *stack);
+void			assign_index(t_stack_node *stack);
+void			print_stack(t_stack_node *stack);
+
+// free
+void			error_free(t_stack_node **a, char **num_array);
+void			free_stack(t_stack_node **stack);
+void			free_num_array(char **num_array);
+
+// commands
+void            pa(t_stack_node **a, t_stack_node **b, bool checker);
+void            pb(t_stack_node **b, t_stack_node **a, bool checker);
+void            rra(t_stack_node **a, bool checker);
+void            rrb(t_stack_node **b, bool checker);
+void            rrr(t_stack_node **a, t_stack_node **b, bool checker);
+void            ra(t_stack_node **a, bool checker);
+void            rb(t_stack_node **b, bool checker);
+void            rr(t_stack_node **a, t_stack_node **b, bool checker);
+void            sa(t_stack_node **a, bool checker);
+void            sb(t_stack_node **b, bool checker);
+void            ss(t_stack_node **a, t_stack_node **b, bool checker);
+
+// Algorithm
 
 
-// command functions
-
+// debugg functions
+void			print_stack(t_stack_node *stack);
+void			print_stack_variant(t_stack_node *stack);
 
 #endif

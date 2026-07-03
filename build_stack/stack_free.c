@@ -1,15 +1,14 @@
 
-#include "push_swap.c"
+#include "push_swap.h"
 
 void    error_free(t_stack_node **a, char **num_array)
 {
-    if (!a && !num_array)
-        return ;
     if (a)
         free_stack(a);
     if (num_array)
         free_num_array(num_array);
-    return ;
+    write(2, "Error\n", 6);
+    exit (EXIT_FAILURE);
 }
 
 void	free_stack(t_stack_node **stack)
