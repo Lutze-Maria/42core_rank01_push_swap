@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 static long	ft_atol(const char *str)
 {
-	int	i;
-	int	counter;
+	int		i;
+	int		counter;
 	long	number;
 
 	i = 0;
@@ -38,7 +38,7 @@ static long	ft_atol(const char *str)
 	return (counter * number);
 }
 
-/* 
+/*
 	Create stack a with the command line values (stored in num_array)
 	checks included:
 		duplicated values
@@ -58,7 +58,7 @@ void	stack_init(t_stack_node **a, char **num_array)
 		{
 			printf("Error: Wrong Syntax\n");
 			free_stack(a);
-			//error_free(a, num_array);
+			// error_free(a, num_array);
 			return ;
 		}
 		nbr = ft_atol(num_array[i]);

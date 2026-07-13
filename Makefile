@@ -16,9 +16,11 @@ SRCS        = 	main.c \
 				parsing/ft_split.c parsing/parse_input.c \
 				build_stack/stack_init.c build_stack/stack_utils.c \
 				build_stack/stack_error_checks.c build_stack/stack_free.c \
-				command/command_push.c command/command_reverse_rotate.c \
-				command/command_rotate.c command/command_swap.c \
-				build_stack/test_stack.c
+				commands/command_push.c commands/command_reverse_rot.c \
+				commands/command_rotate.c commands/command_swap.c \
+				sorting/selection-sort.c  sorting/bucket-sort.c\
+				sorting/adaptive.c build_stack/test_stack.c
+
 
 
 # 3. Object Files
@@ -29,10 +31,10 @@ OBJS        = $(SRCS:.c=.o)
 # 4. Mandatory Rules
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT)
+$(NAME): mlibft $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
-$(LIBFT):
+mlibft:
 	$(MAKE) -C libft
 
 %.o: %.c $(HEADER)
@@ -51,4 +53,4 @@ re: fclean all
 
 # 5. Phony Targets
 # prevents make from confusing these rules with files of the same name
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re libft

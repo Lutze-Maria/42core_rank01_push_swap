@@ -1,102 +1,98 @@
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 // top node to bottom position
 
-static void rotate(t_stack_node **stack)
+static void	rotate(t_stack_node **stack)
 {
-    t_stack_node    *last_node;
+	t_stack_node	*last_node;
 
-    if (!stack || !*stack || !(*stack)->next)
-        return ;
-    last_node = find_last_node(*stack);
-    last_node->next = *stack;
-    *stack = (*stack)->next;
-    (*stack)->prev = NULL;
-    last_node->next->next = last_node;
-    last_node->next->next = NULL;
+	if (!stack || !*stack || !(*stack)->next)
+		return ;
+	last_node = find_last_node(*stack);
+	last_node->next = *stack;
+	*stack = (*stack)->next;
+	(*stack)->prev = NULL;
+	last_node->next->next = last_node;
+	last_node->next->next = NULL;
 }
 /*
-static void rotate(t_stack_node **stack)
+static void	rotate(t_stack_node **stack)
 {
-    t_stack_node    *first;
-    t_stack_node    *last;
+	t_stack_node	*first;
+	t_stack_node	*last;
 
-    if (!stack || !*stack || !(*stack)->next)
-        return;
-
-    first = *stack;
-    last = find_last_node(*stack);
-
-    *stack = first->next;
-    (*stack)->prev = NULL;
-
-    last->next = first;
-    first->prev = last;
-    first->next = NULL;
+	if (!stack || !*stack || !(*stack)->next)
+		return ;
+	first = *stack;
+	last = find_last_node(*stack);
+	*stack = first->next;
+	(*stack)->prev = NULL;
+	last->next = first;
+	first->prev = last;
+	first->next = NULL;
 }*/
-
-void    ra(t_stack_node **a, bool checker)
+void	ra(t_stack_node **a, bool checker)
 {
-    rotate(a);
-    if (!checker)
-        write(1, "ra\n", 3);
+	rotate(a);
+	if (!checker)
+		write(1, "ra\n", 3);
 }
 
-void    rb(t_stack_node **b, bool checker)
+void	rb(t_stack_node **b, bool checker)
 {
-    rotate(b);
-    if (!checker)
-        write(1, "rb\n", 3);
+	rotate(b);
+	if (!checker)
+		write(1, "rb\n", 3);
 }
 
-void    rr(t_stack_node **a, t_stack_node **b, bool checker)
+void	rr(t_stack_node **a, t_stack_node **b, bool checker)
 {
-    rotate(a);
-    rotate(b);
-    if (!checker)
-        write(1, "rr\n", 3);
+	rotate(a);
+	rotate(b);
+	if (!checker)
+		write(1, "rr\n", 3);
 }
 /*
 int	main(int argc, char **argv)
 {
 	// initialize stack a & b, point to NULL
 	//t_stack_node	*a;
-    t_stack_node	*b;
+	t_stack_node	*b;
 	t_config 		cfg;
 	char			**tokens;
-    bool            silent;
+	bool            silent;
 
-    //a = NULL;
+	//a = NULL;
 	b = NULL;
 	silent = true;
 
 	// detect flag + PARSING
 	cfg = parse_config(argc, argv);
-    tokens = parse_input(argc, argv, cfg.start);
+	tokens = parse_input(argc, argv, cfg.start);
 	if (!tokens)
-    {
-        printf("Error while parsing!\n");
-        return (1);
-    }
-	
+	{
+		printf("Error while parsing!\n");
+		return (1);
+	}
+
 	// STACK
-    //stack_init(&a, tokens);
+	//stack_init(&a, tokens);
 	stack_init(&b, tokens);
-    free_num_array(tokens);
-    if (!a)
+	free_num_array(tokens);
+	if (!a)
 	{
-        // printf("Error initiating stack a!\n\n");
-        return (1);
-    }
-    assign_index(a);
-    
-    if (!b)
+		// printf("Error initiating stack a!\n\n");
+		return (1);
+	}
+	assign_index(a);
+
+	if (!b)
 	{
-        // printf("Error initiating stack a!\n\n");
-        return (1);
-    }
-    assign_index(b);
+		// printf("Error initiating stack a!\n\n");
+		return (1);
+	}
+	assign_index(b);
 
 	//printf("STACK A:");
 	//print_stack_variant(a);
@@ -104,12 +100,12 @@ int	main(int argc, char **argv)
 	print_stack_variant(b);
 
 	// RUN COMMAND
-    rb(&b, silent);
+	rb(&b, silent);
 
-    printf("AFTER Command:\n\n");
-    //printf("STACK A:");
+	printf("AFTER Command:\n\n");
+	//printf("STACK A:");
 	//print_stack_variant(a);
-    printf("STACK B:");
+	printf("STACK B:");
 	print_stack_variant(b);
 
 	free_stack(&b);
@@ -117,5 +113,6 @@ int	main(int argc, char **argv)
 	return (0);
 }*/
 
-// cc -Wall -Wextra -Werror command_rotate.c ../build_stack/*.c ../parsing/*.c ../libft/libft.a -I../libft -I../build_stack -I../parsing -I.. -o test_rotate
-
+// cc -Wall -Wextra
+// -Werror command_rotate.c ../build_stack/*.c ../parsing/*.c ../libft/libft.a
+// -I../libft -I../build_stack -I../parsing -I.. -o test_rotate

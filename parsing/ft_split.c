@@ -1,5 +1,5 @@
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 // static char	**ft_free_all(char **result, int index)
 // {

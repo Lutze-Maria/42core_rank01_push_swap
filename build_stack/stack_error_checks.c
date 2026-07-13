@@ -1,9 +1,9 @@
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 /*
 Valid: "0" "+42" "-42" "123"
-Invalid: "" "+" "-" "12a3" 
+Invalid: "" "+" "-" "12a3"
 " 42" (handled by split)
 "4 2" (handled by split)
 */
@@ -28,15 +28,13 @@ int	error_syntax(char *str)
 	return (1);
 }
 
-int error_duplicate(t_stack_node *a, int new_nbr)
+int	error_duplicate(t_stack_node *a, int new_nbr)
 {
-    while (a)
-    {
-        if (a->value == new_nbr)
-            return (1);
-        a = a->next;
-    }
-    return (0);
+	while (a)
+	{
+		if (a->value == new_nbr)
+			return (1);
+		a = a->next;
+	}
+	return (0);
 }
-
-

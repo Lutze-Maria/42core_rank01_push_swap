@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void print_tokens(char **t)
 {
