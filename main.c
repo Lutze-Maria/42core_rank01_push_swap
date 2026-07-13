@@ -14,45 +14,41 @@
 
 int	main(int argc, char **argv)
 {
-	// initialize stack a & b, point to NULL
 	t_stack_node	*a;
-	//t_stack_node	*b;
-	t_config 		cfg;
+	t_config		cfg;
 	char			**tokens;
+	float			disorder;
 
+	// initialize stack a & b, point to NULL
+	// t_stack_node	*b;
 	a = NULL;
-	//b = NULL;
-	
+	// b = NULL;
 	// detect flag + PARSING
 	cfg = parse_config(argc, argv);
-    tokens = parse_input(argc, argv, cfg.start);
+	tokens = parse_input(argc, argv, cfg.start);
 	if (!tokens)
-    {
-        printf("Error while parsing!\n");
-        return (1);
-    }
-	
+	{
+		printf("Error while parsing!\n");
+		return (1);
+	}
 	// STACK
 	stack_init(&a, tokens);
 	if (!a)
 	{
-        // printf("Error initiating stack a!\n\n");
-        return (1);
-    }
+		// printf("Error initiating stack a!\n\n");
+		return (1);
+	}
 	assign_index(a);
-	
 	free_num_array(tokens);
-	
-	print_stack(a);
-	
 	// SORTING
 	// check: stack a already sorted?
 	//		if not:  SORTING ALGORITHM MAGIC  happens here
 	//		is_bench flag? if No: use '--adaptive' as default
-
-	
+	disorder = compute_disorder(&a);
+	if (disorder > 0)
+		sort_stack(&a, cfg, disorder);
+	print_stack(a);
 	// CLEAN UP stack
 	free_stack(&a);
-
 	return (0);
 }

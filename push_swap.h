@@ -88,6 +88,9 @@ void            sb(t_stack_node **b, bool checker);
 void            ss(t_stack_node **a, t_stack_node **b, bool checker);
 
 // Algorithm
+void sort_stack(t_stack_node **a, t_config cfg, float disorder);
+float	compute_disorder(t_stack_node **a);
+void	selection_sort(t_stack_node **a, bool bench);
 
 
 // debugg functions
