@@ -1,39 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bubble-sort.c                                      :+:      :+:    :+:   */
+/*   selection-sort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpetutsc <dpetutsc@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 10:33:06 by dpetutsc          #+#    #+#             */
-/*   Updated: 2026/07/13 10:33:06 by dpetutsc         ###   ########.fr       */
+/*   Updated: 2026/07/14 10:40:27 by dpetutsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 #include <stdint.h>
 
-void	selection_sort(t_stack_node **a, bool bench)
+void	selection_sort(t_stack_node **a)
 {
-	t_stack_node	*smallest;
+	int				smallest;
 	t_stack_node	**b;
 
 	b = malloc(sizeof(t_stack_node **));
 	if (!b)
 		return ;
 	*b = NULL;
-	(void)bench;
+	smallest = INT_MAX;
 	while (*a)
 	{
-		if (!smallest || smallest->value > (*a)->value)
-			smallest = *a;
-		else if ((uintptr_t)*a == (uintptr_t)smallest)
+		if (smallest > (*a)->value)
+			smallest = (*a)->value;
+		else if ((*a)->value == smallest)
 		{
 			pb(b, a, false);
-			smallest = NULL;
+			smallest = INT_MAX;
 		}
 		ra(a, false);
 	}
 	while (*b)
 		pa(a, b, false);
+	free(b);
 }

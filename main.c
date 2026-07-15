@@ -44,10 +44,11 @@ int	main(int argc, char **argv)
 	// check: stack a already sorted?
 	//		if not:  SORTING ALGORITHM MAGIC  happens here
 	//		is_bench flag? if No: use '--adaptive' as default
+	//	print_stack(a);
 	disorder = compute_disorder(&a);
 	if (disorder > 0)
 		sort_stack(&a, cfg, disorder);
-	print_stack(a);
+	// print_stack(a);
 	// CLEAN UP stack
 	free_stack(&a);
 	return (0);

@@ -62,7 +62,7 @@ int				error_duplicate(t_stack_node *a, int new_nbr);
 // nodes
 void			append_node(t_stack_node **stack, int nbr);
 t_stack_node	*find_smallest(t_stack_node *stack);
-t_stack_node    *find_last_node(t_stack_node *head);
+t_stack_node	*find_last_node(t_stack_node *stack);
 
 // stack utils
 int				stack_len(t_stack_node *stack);
@@ -90,7 +90,8 @@ void            ss(t_stack_node **a, t_stack_node **b, bool checker);
 // Algorithm
 void sort_stack(t_stack_node **a, t_config cfg, float disorder);
 float	compute_disorder(t_stack_node **a);
-void	selection_sort(t_stack_node **a, bool bench);
+void	selection_sort(t_stack_node **a);
+void	bucket_sort(t_stack_node **a);
 
 
 // debugg functions

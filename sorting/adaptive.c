@@ -41,19 +41,16 @@ float	compute_disorder(t_stack_node **a)
 void	sort_stack(t_stack_node **a, t_config cfg, float disorder)
 {
 	if (cfg.flag == FLAG_SIMPLE)
-		selection_sort(a, false);
+		selection_sort(a);
 	else if (cfg.flag == FLAG_MEDIUM)
-		;
+		bucket_sort(a);
 	else if (cfg.flag == FLAG_COMPLEX)
 		;
 	else if (disorder < .2)
-		selection_sort(a, false);
+		selection_sort(a);
 	else if (disorder < .5)
-		;
+		bucket_sort(a);
 	else
 		;
-	(void)a;
-	(void)cfg;
-	(void)disorder;
 	return ;
 }
