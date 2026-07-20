@@ -20,9 +20,12 @@ static void	rev_rotate(t_stack_node **stack)
 		return ;
 	last = find_last_node(*stack);
 	// detach last node
-	last->prev->next = NULL;
-	// move it to front
-	last->prev = NULL;
+	if (last->prev)
+	{
+		last->prev->next = NULL;
+		// move it to front
+		last->prev = NULL;
+	}
 	last->next = *stack;
 	(*stack)->prev = last;
 	*stack = last;

@@ -13,57 +13,6 @@
 #include "../push_swap.h"
 #include <stdint.h>
 
-static t_stack_node	*find_first_node(t_stack_node *a)
-{
-	if (!a)
-		return (NULL);
-	while (a->prev)
-		a = a->prev;
-	return (a);
-}
-
-static int	distance_to_element(t_stack_node **a, int index, int bucket_size)
-{
-	t_stack_node	*b;
-	int				i;
-	int				len;
-
-	len = stack_len(*a);
-	if (len <= 1)
-		return (0);
-	b = *a;
-	i = 0;
-	while (i < bucket_size)
-	{
-		if (b == NULL && (uintptr_t)b != (uintptr_t)find_first_node(*a))
-		{
-			b = find_first_node(*a);
-			if (b == NULL)
-				print_stack(b);
-		}
-		if (b->index == index)
-			return (i);
-		b = b->next;
-		i++;
-	}
-	b = *a;
-	i = 0;
-	while (-i < bucket_size)
-	{
-		if (b == NULL && (uintptr_t)b != (uintptr_t)find_last_node(*a))
-		{
-			b = find_last_node(*a);
-			if (b == NULL)
-				print_stack(b);
-		}
-		if (b->index == index)
-			return (i);
-		b = b->prev;
-		i--;
-	}
-	return (0);
-}
-
 static int	sqrt(int n)
 {
 	int	sqroot;
@@ -99,32 +48,30 @@ static void	sort_into_buckets(t_stack_node **a, t_stack_node **b,
 	}
 }
 
-static void	selection_sort_buckets(t_stack_node **a, t_stack_node **b,
-		int bucket_size)
+static void	sort_buckets(t_stack_node **a, t_stack_node **b, int bucket_size)
 {
-	int	i;
-	int	distance;
+	int	lowest_in_bucket;
+	int	index;
 
-	i = stack_len(*b) - 1;
-	if (b)
-		distance = distance_to_element(b, i, bucket_size);
+	index = stack_len(*b) - 1;
+	lowest_in_bucket = index - bucket_size;
 	while (*b)
-	{
-		if ((*b)->index == i)
+		if ((*b)->index == index)
 		{
-			print_stack(*b);
 			pa(a, b, false);
-			i--;
-			if (b)
-				distance = distance_to_element(b, i, bucket_size);
+			index--;
+			if (index < lowest_in_bucket)
+				lowest_in_bucket -= bucket_size;
 		}
-		else if (distance > 0)
-			rb(b, false);
-		else if (distance < 0)
+		else
 		{
-			rrb(b, false);
+			if ((*b)->index != index)
+				while ((*b)->prev && (*b)->prev->index >= lowest_in_bucket)
+					rrb(b, false);
+			if ((*b)->index != index)
+				while ((*b)->next && (*b)->next->index >= lowest_in_bucket)
+					rb(b, false);
 		}
-	}
 }
 
 void	bucket_sort(t_stack_node **a)
@@ -138,6 +85,6 @@ void	bucket_sort(t_stack_node **a)
 	*b = NULL;
 	bucket_size = sqrt(stack_len(*a));
 	sort_into_buckets(a, b, bucket_size);
-	selection_sort_buckets(a, b, bucket_size);
+	sort_buckets(a, b, bucket_size);
 	free(b);
 }
