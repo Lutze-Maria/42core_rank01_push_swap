@@ -6,53 +6,56 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 18:34:17 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/02 15:28:21 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/21 10:27:24 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_flag check_flag(char *flag)
+t_flag	check_flag(char *flag)
 {
-    if (!flag)
-        return (FLAG_INVALID);
-    if (ft_strncmp(flag, "--simple", 9) == 0)
-        return (FLAG_SIMPLE);
-    if (ft_strncmp(flag, "--medium", 9) == 0)
-        return (FLAG_MEDIUM);
-    if (ft_strncmp(flag, "--complex", 10) == 0)
-        return (FLAG_COMPLEX);
-    if (ft_strncmp(flag, "--adaptive", 11) == 0)
-        return (FLAG_ADAPTIVE);
-    return (FLAG_INVALID);
+	if (!flag)
+		return (FLAG_INVALID);
+	if (ft_strncmp(flag, "--simple", 9) == 0)
+		return (FLAG_SIMPLE);
+	if (ft_strncmp(flag, "--medium", 9) == 0)
+		return (FLAG_MEDIUM);
+	if (ft_strncmp(flag, "--complex", 10) == 0)
+		return (FLAG_COMPLEX);
+	if (ft_strncmp(flag, "--adaptive", 11) == 0)
+		return (FLAG_ADAPTIVE);
+	return (FLAG_INVALID);
 }
 
 t_config	parse_config(int argc, char **argv)
 {
-    t_config cfg;
+	t_config	cfg;
+	t_flag		tmp;
 
-    cfg.flag = FLAG_ADAPTIVE;
-    cfg.start = 1;
-    if (argc > 1 && argv[1][0] == '-')
-    {
-        t_flag tmp = check_flag(argv[1]);
-        if (tmp == FLAG_INVALID)
-        {
-            printf("Flag unknown\n");
-            exit(1);
-        }
-        cfg.flag = tmp;
-        cfg.start = 2;
-    }
-    return cfg;
+	cfg.flag = FLAG_ADAPTIVE;
+	cfg.start = 1;
+	if (argc > 1 && argv[1][0] == '-')
+	{
+		tmp = check_flag(argv[1]);
+		if (tmp == FLAG_INVALID)
+		{
+			printf("Flag unknown\n");
+			exit(1);
+		}
+		cfg.flag = tmp;
+		cfg.start = 2;
+	}
+	return (cfg);
 }
 
-char *join_args(int argc, char **argv, int start)
+char	*join_args(int argc, char **argv, int start)
 {
-	char *result = NULL;
-	char *tmp;
-	int i = start;
+	char	*result;
+	char	*tmp;
+	int		i;
 
+	result = NULL;
+	i = start;
 	while (i < argc)
 	{
 		tmp = result;
@@ -67,30 +70,32 @@ char *join_args(int argc, char **argv, int start)
 		}
 		i++;
 	}
-	return result;
+	return (result);
 }
 
-char **parse_input(int argc, char **argv, int start)
+char	**parse_input(int argc, char **argv, int start)
 {
-    char    *joined;
-    char    **tokens;
-    
-    if (argc <= start)
-        return (NULL);
-    joined = join_args(argc, argv, start);
-    tokens = ft_split(joined, ' ');
-    free(joined);
-    return (tokens);
+	char	*joined;
+	char	**tokens;
+
+	if (argc <= start)
+		return (NULL);
+	joined = join_args(argc, argv, start);
+	tokens = ft_split(joined, ' ');
+	free(joined);
+	return (tokens);
 }
 
-void free_tokens(char **tokens)
+void	free_tokens(char **tokens)
 {
-    int i = 0;
-    if (!tokens)
-        return;
-    while (tokens[i])
-        free(tokens[i++]);
-    free(tokens);
+	int	i;
+
+	i = 0;
+	if (!tokens)
+		return ;
+	while (tokens[i])
+		free(tokens[i++]);
+	free(tokens);
 }
 /*
 int main(int argc, char **argv)

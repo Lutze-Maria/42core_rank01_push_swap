@@ -1,9 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_parser.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/21 10:27:42 by lschawer          #+#    #+#             */
+/*   Updated: 2026/07/21 10:28:07 by lschawer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include "push_swap.h"
 
-void print_tokens(char **t)
+void	print_tokens(char **t)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (t[i])
 	{
 		printf("[%d] '%s'\n", i, t[i]);

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_stack.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/21 10:40:04 by lschawer          #+#    #+#             */
+/*   Updated: 2026/07/21 10:40:24 by lschawer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -15,11 +26,11 @@ void	print_stack(t_stack_node *stack)
 	printf("-------------------\n\n");
 }
 
-void    print_stack_variant(t_stack_node *stack)
+void	print_stack_variant(t_stack_node *stack)
 {
-	int i;
-    
-    i = 0;
+	int	i;
+
+	i = 0;
 	printf("\n----- STACK -----\n");
 	while (stack)
 	{

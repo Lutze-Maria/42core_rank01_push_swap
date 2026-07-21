@@ -1,14 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_free.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/21 10:35:49 by lschawer          #+#    #+#             */
+/*   Updated: 2026/07/21 10:36:52 by lschawer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    error_free(t_stack_node **a, char **num_array)
+void	error_free(t_stack_node **a, char **num_array)
 {
-    if (a)
-        free_stack(a);
-    if (num_array)
-        free_num_array(num_array);
-    write(2, "Error\n", 6);
-    exit (EXIT_FAILURE);
+	if (a)
+		free_stack(a);
+	if (num_array)
+		free_num_array(num_array);
+	write(2, "Error\n", 6);
+	exit (EXIT_FAILURE);
 }
 
 void	free_stack(t_stack_node **stack)
@@ -25,16 +36,17 @@ void	free_stack(t_stack_node **stack)
 	}
 }
 
-void    free_num_array(char **num_array)
+void	free_num_array(char **num_array)
 {
-	int i;
-    if (!num_array)
+	int	i;
+
+	if (!num_array)
 		return ;
-    i = 0;
-    while (num_array[i])
-    {
-        free(num_array[i]);
-        i++;
-    }
-    free (num_array);
+	i = 0;
+	while (num_array[i])
+	{
+		free(num_array[i]);
+		i++;
+	}
+	free (num_array);
 }

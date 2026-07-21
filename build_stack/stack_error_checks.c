@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_error_checks.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/21 10:35:12 by lschawer          #+#    #+#             */
+/*   Updated: 2026/07/21 10:35:42 by lschawer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -28,15 +39,15 @@ int	error_syntax(char *str)
 	return (1);
 }
 
-int error_duplicate(t_stack_node *a, int new_nbr)
+int	error_duplicate(t_stack_node *a, int new_nbr)
 {
-    while (a)
-    {
-        if (a->value == new_nbr)
-            return (1);
-        a = a->next;
-    }
-    return (0);
+	while (a)
+	{
+		if (a->value == new_nbr)
+			return (1);
+		a = a->next;
+	}
+	return (0);
 }
 
 

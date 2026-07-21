@@ -1,41 +1,52 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   command_swap.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/21 10:33:54 by lschawer          #+#    #+#             */
+/*   Updated: 2026/07/21 10:35:02 by lschawer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
 // swap first two nodes of one stack
 
-static void swap(t_stack_node **head)
+static void	swap(t_stack_node **head)
 {
-    if (NULL == *head || NULL == head)
-        return ;
-    *head = (*head)->next;
-    (*head)->prev->prev = *head;
-    (*head)->prev->next = (*head)->next;
-    if ((*head)->next)
-        (*head)->next->prev = (*head)->prev;
-    (*head)->next = (*head)->prev;
-    (*head)->prev = NULL;
+	if (NULL == *head || NULL == head)
+		return ;
+	*head = (*head)->next;
+	(*head)->prev->prev = *head;
+	(*head)->prev->next = (*head)->next;
+	if ((*head)->next)
+		(*head)->next->prev = (*head)->prev;
+	(*head)->next = (*head)->prev;
+	(*head)->prev = NULL;
 }
 
-void    sa(t_stack_node **a, bool checker)
+void	sa(t_stack_node **a, bool checker)
 {
-    swap(a);
-    if (!checker)
-        write(1, "sa\n", 3);
+	swap(a);
+	if (!checker)
+		write(1, "sa\n", 3);
 }
 
-void    sb(t_stack_node **b, bool checker)
+void	sb(t_stack_node **b, bool checker)
 {
-    swap(b);
-    if (!checker)
-        write(1, "sb\n", 3);
+	swap(b);
+	if (!checker)
+		write(1, "sb\n", 3);
 }
 
-void    ss(t_stack_node **a, t_stack_node **b, bool checker)
+void	ss(t_stack_node **a, t_stack_node **b, bool checker)
 {
-    swap(a);
-    swap(b);
-    if (!checker)
-        write(1, "ss\n", 3);
+	swap(a);
+	swap(b);
+	if (!checker)
+		write(1, "ss\n", 3);
 }
 /*
 int	main(int argc, char **argv)
