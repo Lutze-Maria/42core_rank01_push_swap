@@ -19,7 +19,8 @@ SRCS        = 	main.c \
 				commands/command_push.c commands/command_reverse_rot.c \
 				commands/command_rotate.c commands/command_swap.c \
 				sorting/selection-sort.c  sorting/bucket-sort.c\
-				sorting/adaptive.c build_stack/test_stack.c
+				sorting/adaptive.c build_stack/test_stack.c\
+				sorting/utils.c
 
 
 

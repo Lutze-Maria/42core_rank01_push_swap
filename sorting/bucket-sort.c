@@ -33,7 +33,7 @@ static void	sort_into_buckets(t_stack_node **a, t_stack_node **b,
 	bucket = 1;
 	while (*a)
 	{
-		if ((*a)->index <= bucket_size * bucket)
+		if ((*a)->index < bucket_size * bucket)
 		{
 			pb(b, a, false);
 			i++;
@@ -52,9 +52,12 @@ static void	sort_buckets(t_stack_node **a, t_stack_node **b, int bucket_size)
 {
 	int	lowest_in_bucket;
 	int	index;
+	int	target_pos;
+	int	pos;
 
 	index = stack_len(*b) - 1;
 	lowest_in_bucket = index - bucket_size;
+	pos = 0;
 	while (*b)
 		if ((*b)->index == index)
 		{
@@ -65,12 +68,17 @@ static void	sort_buckets(t_stack_node **a, t_stack_node **b, int bucket_size)
 		}
 		else
 		{
-			if ((*b)->index != index)
-				while ((*b)->prev && (*b)->prev->index >= lowest_in_bucket)
-					rrb(b, false);
-			if ((*b)->index != index)
-				while ((*b)->next && (*b)->next->index >= lowest_in_bucket)
-					rb(b, false);
+			target_pos = get_position_from_index(*b, index);
+			while (pos < target_pos)
+			{
+				rb(b, false);
+				pos++;
+			}
+			while (pos > target_pos)
+			{
+				rrb(b, false);
+				pos--;
+			}
 		}
 }
 
