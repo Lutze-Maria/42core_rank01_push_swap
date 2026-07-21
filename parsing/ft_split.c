@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:18:23 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/21 10:22:52 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/21 13:20:05 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@
 // 	return (NULL);
 // }
 
+
 static int	count_words(char const *s, char c)
 {
-	int	count = 0;
+	int	count;
 
+	count = 0;
 	while (*s)
 	{
 		while (*s == c)
@@ -47,6 +49,8 @@ static char	*fill_word(char const **s, char c)
 	int		len;
 	int		i;
 
+	if (!s)
+		return (NULL);
 	len = 0;
 	while ((*s)[len] && (*s)[len] != c)
 		len++;
@@ -77,6 +81,9 @@ char	**ft_split(char const *s, char c)
 	if (!result)
 		return (NULL);
 	i = 0;
+	while (i < words + 1)
+		result[i++] = NULL;
+	i = 0;
 	while (*s)
 	{
 		while (*s == c)
@@ -85,11 +92,13 @@ char	**ft_split(char const *s, char c)
 		{
 			result[i] = fill_word(&s, c);
 			if (!result[i])
+			{
+				free_num_array(result);
 				return (NULL);
+			}
 			i++;
 		}
 	}
-	result[i] = NULL;
 	return (result);
 }
 
@@ -105,11 +114,19 @@ int	main(void)
 	int		i;
 
 	split_string = ft_split(s, ' ');
+	if (!split_string)
+	{
+		free_num_array(split_string);
+		return (1);
+	}
 	i = 0;
 	while (split_string[i])
 	{
 		printf("%s\n", split_string[i]);
 		i++;
 	}
-	return 0;
+	free_num_array(split_string);
+	return (0);
 }*/
+
+// cc -Wall -Wextra -Werror ft_split.c -I.. -o test_split

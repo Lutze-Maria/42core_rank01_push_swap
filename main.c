@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/07 16:07:45 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/21 10:42:03 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/21 12:33:52 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,24 @@ int	main(int argc, char **argv)
 	}
 
 	// STACK
-	stack_init(&a, tokens);
+	// stack_init(&a, tokens);
+	if (stack_init(&a, tokens))
+	{
+		free_num_array(tokens);
+		return (1);
+	}
+	printf("ABOUT TO FREE TOKENS\n");
+	free_num_array(tokens);
+	printf("TOKENS FREED\n");
 	if (!a)
 	{
 		// printf("Error initiating stack a!\n\n");
 		return (1);
 	}
+
 	assign_index(a);
 
-	free_num_array(tokens);
+	//free_num_array(tokens);
 
 	print_stack(a);
 
@@ -55,3 +64,6 @@ int	main(int argc, char **argv)
 
 	return (0);
 }
+
+// chmod +x test.sh
+// ./test.sh

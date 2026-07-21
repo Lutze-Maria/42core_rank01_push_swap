@@ -4,7 +4,7 @@
 # 1. Variables
 NAME        = push_swap
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror
+CFLAGS      = -Wall -Wextra -Werror -g
 
 RM          = rm -f
 HEADER		= push_swap.h
@@ -16,8 +16,8 @@ SRCS        = 	main.c \
 				parsing/ft_split.c parsing/parse_input.c \
 				build_stack/stack_init.c build_stack/stack_utils.c \
 				build_stack/stack_error_checks.c build_stack/stack_free.c \
-				command/command_push.c command/command_reverse_rotate.c \
-				command/command_rotate.c command/command_swap.c \
+				commands/command_push.c commands/command_reverse_rot.c \
+				commands/command_rotate.c commands/command_swap.c \
 				build_stack/test_stack.c
 
 

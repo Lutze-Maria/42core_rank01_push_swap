@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:29:50 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/21 10:32:12 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/21 13:24:53 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,12 @@ static void	rev_rotate(t_stack_node **stack)
 		return ;
 	last = find_last_node(*stack);
 	// detach last node
-	last->prev->next = NULL;
-	// move it to front
-	last->prev = NULL;
+	if (last->prev)
+	{
+		last->prev->next = NULL;
+		// move it to front
+		last->prev = NULL;
+	}
 	last->next = *stack;
 	(*stack)->prev = last;
 	*stack = last;

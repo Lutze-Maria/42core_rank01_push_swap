@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:44:17 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/21 10:37:15 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/21 12:23:06 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static long	ft_atol(const char *str)
 		syntax errors
  */
 
-void	stack_init(t_stack_node **a, char **num_array)
+int	stack_init(t_stack_node **a, char **num_array)
 {
 	long	nbr;
 	int		i;
@@ -59,7 +59,7 @@ void	stack_init(t_stack_node **a, char **num_array)
 			printf("Error: Wrong Syntax\n");
 			free_stack(a);
 			//error_free(a, num_array);
-			return ;
+			return (1);
 		}
 		nbr = ft_atol(num_array[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)
@@ -67,16 +67,17 @@ void	stack_init(t_stack_node **a, char **num_array)
 			printf("Error: Overflow\n");
 			free_stack(a);
 			//	error_free(a, num_array);
-			return ;
+			return (1);
 		}
 		if (error_duplicate(*a, (int)nbr))
 		{
 			printf("Error: Duplicate\n");
 			free_stack(a);
 			//	error_free(a, num_array);
-			return ;
+			return (1);
 		}
 		append_node(a, (int)nbr);
 		i++;
 	}
+	return (0);
 }
