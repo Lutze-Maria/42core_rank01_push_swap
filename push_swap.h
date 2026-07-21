@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:47:17 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/21 13:19:08 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/21 15:26:48 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@
 // zum debuggen
 # include <stdio.h>
 
-//# define INT_MAX	__INT_MAX__
-//# define INT_MIN	__INT_MIN__
-
 typedef struct s_stack_node
 {
 	int					value;
@@ -39,12 +36,19 @@ typedef enum e_flag
 	FLAG_MEDIUM,
 	FLAG_COMPLEX,
 	FLAG_ADAPTIVE,
-	FLAG_INVALID
+	FLAG_INVALID,
 }	t_flag;
+
+typedef enum t_flag
+{
+	FLAG_BENCH,
+	FLAG_BENCH_INVALID,
+}	t_bench;
 
 typedef struct s_config
 {
 	t_flag	flag;
+	t_bench	bench;
 	int		start;
 }	t_config;
 
@@ -53,8 +57,6 @@ t_flag			check_flag(char *flag);
 t_config		parse_config(int argc, char **argv);
 char			*join_args(int argc, char **argv, int start);
 char			**parse_input(int argc, char **argv, int start);
-//void			free_tokens(char **tokens);
-
 char			**ft_split(char const *s, char c);
 
 // stack initiation
@@ -96,5 +98,6 @@ void			ss(t_stack_node **a, t_stack_node **b, bool checker);
 // debugg functions
 void			print_stack(t_stack_node *stack);
 void			print_stack_variant(t_stack_node *stack);
+void			print_config(t_config cfg);
 
 #endif

@@ -5,36 +5,22 @@
 
 static void	rotate(t_stack_node **stack)
 {
-	t_stack_node	*last_node;
+	t_stack_node	*first;
+	t_stack_node	*last;
 
 	if (!stack || !*stack || !(*stack)->next)
 		return ;
-	last_node = find_last_node(*stack);
-	last_node->next = *stack;
-	*stack = (*stack)->next;
+
+	first = *stack;
+	last = find_last_node(*stack);
+
+	*stack = first->next;
 	(*stack)->prev = NULL;
-	last_node->next->next = last_node;
-	last_node->next->next = NULL;
+
+	last->next = first;
+	first->prev = last;
+	first->next = NULL;
 }
-/*
-static void rotate(t_stack_node **stack)
-{
-    t_stack_node    *first;
-    t_stack_node    *last;
-
-    if (!stack || !*stack || !(*stack)->next)
-        return;
-
-    first = *stack;
-    last = find_last_node(*stack);
-
-    *stack = first->next;
-    (*stack)->prev = NULL;
-
-    last->next = first;
-    first->prev = last;
-    first->next = NULL;
-}*/
 
 void	ra(t_stack_node **a, bool checker)
 {
@@ -84,13 +70,14 @@ int	main(int argc, char **argv)
     //stack_init(&a, tokens);
 	stack_init(&b, tokens);
     free_num_array(tokens);
+	
     if (!a)
 	{
         // printf("Error initiating stack a!\n\n");
         return (1);
     }
     assign_index(a);
-    
+
     if (!b)
 	{
         // printf("Error initiating stack a!\n\n");
@@ -101,21 +88,40 @@ int	main(int argc, char **argv)
 	//printf("STACK A:");
 	//print_stack_variant(a);
 	printf("STACK B:");
-	print_stack_variant(b);
+	print_stack(b);
 
 	// RUN COMMAND
     rb(&b, silent);
+	rb(&b, silent);
+	rb(&b, silent);
+	rb(&b, silent);
 
     printf("AFTER Command:\n\n");
     //printf("STACK A:");
 	//print_stack_variant(a);
     printf("STACK B:");
-	print_stack_variant(b);
+	print_stack(b);
 
 	free_stack(&b);
 
 	return (0);
 }*/
+
+/*
+static void	rotate(t_stack_node **stack)
+{
+	t_stack_node	*last_node;
+
+	if (!stack || !*stack || !(*stack)->next)
+		return ;
+	last_node = find_last_node(*stack);
+	last_node->next = *stack;
+	*stack = (*stack)->next;
+	(*stack)->prev = NULL;
+	last_node->next->next = last_node;
+	last_node->next->next = NULL;
+}*/
+
 
 // cc -Wall -Wextra -Werror command_rotate.c ../build_stack/*.c ../parsing/*.c ../libft/libft.a -I../libft -I../build_stack -I../parsing -I.. -o test_rotate
 

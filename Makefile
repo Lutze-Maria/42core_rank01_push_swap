@@ -13,7 +13,7 @@ INCLUDES 	= -I. -Ilibft -Iparsing -Ibuild_stack
 
 # 2. Source Files
 SRCS        = 	main.c \
-				parsing/ft_split.c parsing/parse_input.c \
+				parsing/ft_split.c parsing/parse_input.c parsing/test_parser.c\
 				build_stack/stack_init.c build_stack/stack_utils.c \
 				build_stack/stack_error_checks.c build_stack/stack_free.c \
 				commands/command_push.c commands/command_reverse_rot.c \

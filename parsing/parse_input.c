@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 18:34:17 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/21 13:19:39 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/21 15:43:46 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,45 @@ t_flag	check_flag(char *flag)
 	return (FLAG_INVALID);
 }
 
+t_bench	check_bench(char *bench)
+{
+	if (!bench)
+		return (FLAG_BENCH_INVALID);
+	if (ft_strncmp(bench, "--bench", 8) == 0)
+		return (FLAG_BENCH);
+	return (FLAG_BENCH_INVALID);
+}
+
 t_config	parse_config(int argc, char **argv)
 {
 	t_config	cfg;
-	t_flag		tmp;
+	t_flag		tmp_flag;
+	t_bench		tmp_bench;
 
 	cfg.flag = FLAG_ADAPTIVE;
+	cfg.bench = FLAG_BENCH_INVALID;
 	cfg.start = 1;
 	if (argc > 1 && argv[1][0] == '-' && argv[1][1] == '-')
 	{
-		tmp = check_flag(argv[1]);
-		if (tmp == FLAG_INVALID)
-		{
-			printf("Flag unknown\n");
-			exit(1);
-		}
-		cfg.flag = tmp;
-		cfg.start = 2;
+		tmp_flag = check_flag(argv[1]);
+		tmp_bench = check_bench(argv[1]);
+		if (tmp_flag == FLAG_INVALID && tmp_bench == FLAG_BENCH)
+			cfg.bench = tmp_bench;
+		if (tmp_flag != FLAG_INVALID && tmp_bench == FLAG_BENCH_INVALID)
+			cfg.flag = tmp_flag;
+		cfg.start += 1;
 	}
+	if (argc > 2 && argv[2][0] == '-' && argv[2][1] == '-')
+	{
+		tmp_flag = check_flag(argv[2]);
+		tmp_bench = check_bench(argv[2]);
+		if (tmp_flag == FLAG_INVALID && tmp_bench == FLAG_BENCH)
+			cfg.bench = tmp_bench;
+		if (tmp_flag != FLAG_INVALID && tmp_bench == FLAG_BENCH_INVALID)
+			cfg.flag = tmp_flag;
+		cfg.start += 1;
+	}
+	//print_config(cfg);
 	return (cfg);
 }
 
@@ -121,3 +142,26 @@ int	main(int argc, char **argv)
 // cc -Wall -Wextra -Werror test_parser.c ft_split.c parse_input.c ../libft/libft.a -I../libft -I.. -o push_swap
 // chmod +x test.sh
 // ./test.sh
+
+/*
+t_config	parse_config(int argc, char **argv)
+{
+	t_config	cfg;
+	t_flag		tmp;
+
+	cfg.flag = FLAG_ADAPTIVE;
+	cfg.bench = FLAG_BENCH_INVALID;
+	cfg.start = 1;
+	if (argc > 1 && argv[1][0] == '-' && argv[1][1] == '-')
+	{
+		tmp = check_flag(argv[1]);
+		if (tmp == FLAG_INVALID)
+		{
+			printf("Flag unknown\n");
+			exit(1);
+		}
+		cfg.flag = tmp;
+		cfg.start = 2;
+	}
+	return (cfg);
+}*/
