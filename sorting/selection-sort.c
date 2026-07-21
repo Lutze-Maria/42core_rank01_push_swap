@@ -13,10 +13,28 @@
 #include "../push_swap.h"
 #include <stdint.h>
 
+static void	move_to_target_index(t_stack_node **a, int index)
+{
+	int	target_distance;
+
+	target_distance = get_distance_from_index(*a, index, (index + 1) / 2);
+	if (target_distance == INT_MIN)
+		return (void)write(2, "Error: Couldnt find index\n", 26);
+	while (target_distance > 0)
+	{
+		ra(a, false);
+		target_distance--;
+	}
+	while (target_distance < 0)
+	{
+		rra(a, false);
+		target_distance++;
+	}
+}
+
 void	selection_sort(t_stack_node **a)
 {
 	int				index;
-	int				target_distance;
 	t_stack_node	**b;
 
 	b = malloc(sizeof(t_stack_node **));
@@ -32,22 +50,7 @@ void	selection_sort(t_stack_node **a)
 			index--;
 		}
 		else
-		{
-			target_distance = get_distance_from_index(*a, index, (index + 1)
-					/ 2);
-			if (target_distance == INT_MIN)
-				return (void)write(2, "Error: Couldnt find index\n", 26);
-			while (target_distance > 0)
-			{
-				ra(a, false);
-				target_distance--;
-			}
-			while (target_distance < 0)
-			{
-				rra(a, false);
-				target_distance++;
-			}
-		}
+			move_to_target_index(a, index);
 	}
 	while (*b)
 		pa(a, b, false);

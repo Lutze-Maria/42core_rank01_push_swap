@@ -48,6 +48,20 @@ static void	sort_into_buckets(t_stack_node **a, t_stack_node **b,
 	}
 }
 
+static void	move_distance(t_stack_node **b, int target_distance)
+{
+	while (target_distance > 0)
+	{
+		rb(b, false);
+		target_distance--;
+	}
+	while (target_distance < 0)
+	{
+		rrb(b, false);
+		target_distance++;
+	}
+}
+
 static void	sort_buckets(t_stack_node **a, t_stack_node **b, int bucket_size)
 {
 	int	index;
@@ -55,6 +69,7 @@ static void	sort_buckets(t_stack_node **a, t_stack_node **b, int bucket_size)
 
 	index = stack_len(*b) - 1;
 	while (*b)
+	{
 		if ((*b)->index == index)
 		{
 			pa(a, b, false);
@@ -64,18 +79,10 @@ static void	sort_buckets(t_stack_node **a, t_stack_node **b, int bucket_size)
 		{
 			target_distance = get_distance_from_index(*b, index, bucket_size);
 			if (target_distance == INT_MIN)
-				return (void)write(2, "Error: Couldnt find index\n", 26);
-			while (target_distance > 0)
-			{
-				rb(b, false);
-				target_distance--;
-			}
-			while (target_distance < 0)
-			{
-				rrb(b, false);
-				target_distance++;
-			}
+				return ((void)write(2, "Error: index not found.\n", 24));
+			move_distance(b, target_distance);
 		}
+	}
 }
 
 void	bucket_sort(t_stack_node **a)
