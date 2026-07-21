@@ -14,15 +14,14 @@
 
 int	main(int argc, char **argv)
 {
-	// initialize stack a & b, point to NULL
 	t_stack_node	*a;
 	t_stack_node	*b;
 	t_config		cfg;
 	char			**tokens;
 
+	// initialize stack a & b, point to NULL
 	a = NULL;
 	b = NULL;
-
 	if (argc == 1)
 		return (0);
 	// detect flag + PARSING
@@ -33,7 +32,6 @@ int	main(int argc, char **argv)
 		printf("Error while parsing!\n");
 		return (1);
 	}
-
 	// STACK
 	// stack_init(&a, tokens);
 	if (stack_init(&a, tokens))
@@ -47,24 +45,18 @@ int	main(int argc, char **argv)
 		// printf("Error initiating stack a!\n\n");
 		return (1);
 	}
-
 	assign_index(a);
-
-	//free_num_array(tokens);
-
+	// free_num_array(tokens);
 	print_stack(a);
-
 	// SORTING
 	// check: stack a already sorted?
 	//		if not:  SORTING ALGORITHM MAGIC  happens here
 	//		is_bench flag? if No: use '--adaptive' as default
-
+	sort_stack(&a, cfg, compute_disorder(&a));
 	// CLEAN UP stack
 	free_stack(&a);
-
 	return (0);
 }
-
 
 // chmod +x test.sh
 // ./test.sh

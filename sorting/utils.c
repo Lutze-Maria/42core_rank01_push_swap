@@ -13,19 +13,31 @@
 #include "../push_swap.h"
 #include <limits.h>
 
-int	get_position_from_index(t_stack_node *a, int index)
+int	get_distance_from_index(t_stack_node *a, int index, int max_distance)
 {
-	int	pos;
+	int				distance;
+	int				len;
+	t_stack_node	*start;
 
-	pos = 0;
-	while (a->prev)
-		a = a->prev;
+	distance = 0;
+	len = stack_len(a);
+	start = a;
 	while (a->next && a->index != index)
 	{
 		a = a->next;
-		pos++;
+		distance++;
+	}
+	if (distance > max_distance)
+	{
+		distance = -1;
+		a = find_last_node(start);
+		while (a->prev && a->index != index)
+		{
+			a = a->prev;
+			distance--;
+		}
 	}
 	if (a->index != index)
 		return (INT_MIN);
-	return (pos);
+	return (distance);
 }

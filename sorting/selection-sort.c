@@ -15,24 +15,39 @@
 
 void	selection_sort(t_stack_node **a)
 {
-	int				smallest;
+	int				index;
+	int				target_distance;
 	t_stack_node	**b;
 
 	b = malloc(sizeof(t_stack_node **));
 	if (!b)
 		return ;
 	*b = NULL;
-	smallest = INT_MAX;
+	index = stack_len(*a) - 1;
 	while (*a)
 	{
-		if (smallest > (*a)->value)
-			smallest = (*a)->value;
-		else if ((*a)->value == smallest)
+		if ((*a)->index == index)
 		{
 			pb(b, a, false);
-			smallest = INT_MAX;
+			index--;
 		}
-		ra(a, false);
+		else
+		{
+			target_distance = get_distance_from_index(*a, index, (index + 1)
+					/ 2);
+			if (target_distance == INT_MIN)
+				return (void)write(2, "Error: Couldnt find index\n", 26);
+			while (target_distance > 0)
+			{
+				ra(a, false);
+				target_distance--;
+			}
+			while (target_distance < 0)
+			{
+				rra(a, false);
+				target_distance++;
+			}
+		}
 	}
 	while (*b)
 		pa(a, b, false);

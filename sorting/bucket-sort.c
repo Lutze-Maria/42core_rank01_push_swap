@@ -50,34 +50,30 @@ static void	sort_into_buckets(t_stack_node **a, t_stack_node **b,
 
 static void	sort_buckets(t_stack_node **a, t_stack_node **b, int bucket_size)
 {
-	int	lowest_in_bucket;
 	int	index;
-	int	target_pos;
-	int	pos;
+	int	target_distance;
 
 	index = stack_len(*b) - 1;
-	lowest_in_bucket = index - bucket_size;
-	pos = 0;
 	while (*b)
 		if ((*b)->index == index)
 		{
 			pa(a, b, false);
 			index--;
-			if (index < lowest_in_bucket)
-				lowest_in_bucket -= bucket_size;
 		}
 		else
 		{
-			target_pos = get_position_from_index(*b, index);
-			while (pos < target_pos)
+			target_distance = get_distance_from_index(*b, index, bucket_size);
+			if (target_distance == INT_MIN)
+				return (void)write(2, "Error: Couldnt find index\n", 26);
+			while (target_distance > 0)
 			{
 				rb(b, false);
-				pos++;
+				target_distance--;
 			}
-			while (pos > target_pos)
+			while (target_distance < 0)
 			{
 				rrb(b, false);
-				pos--;
+				target_distance++;
 			}
 		}
 }
