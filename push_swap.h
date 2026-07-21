@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:47:17 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/03 12:58:53 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/21 15:26:48 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,54 @@ int error_duplicate(t_stack_node *a, int new_nbr);
 void append_node(t_stack_node **stack, int nbr);
 t_stack_node *find_smallest(t_stack_node *stack);
 t_stack_node *find_last_node(t_stack_node *stack);
+# include <stdio.h>
+
+typedef struct s_stack_node
+{
+	int					value;
+	int					index;
+	struct s_stack_node	*next;
+	struct s_stack_node	*prev;
+}	t_stack_node;
+
+typedef enum e_flag
+{
+	FLAG_SIMPLE,
+	FLAG_MEDIUM,
+	FLAG_COMPLEX,
+	FLAG_ADAPTIVE,
+	FLAG_INVALID,
+}	t_flag;
+
+typedef enum t_flag
+{
+	FLAG_BENCH,
+	FLAG_BENCH_INVALID,
+}	t_bench;
+
+typedef struct s_config
+{
+	t_flag	flag;
+	t_bench	bench;
+	int		start;
+}	t_config;
+
+// parsing
+t_flag			check_flag(char *flag);
+t_config		parse_config(int argc, char **argv);
+char			*join_args(int argc, char **argv, int start);
+char			**parse_input(int argc, char **argv, int start);
+char			**ft_split(char const *s, char c);
+
+// stack initiation
+int				stack_init(t_stack_node **a, char **num_array);
+int				error_syntax(char *str);
+int				error_duplicate(t_stack_node *a, int new_nbr);
+
+// nodes
+void			append_node(t_stack_node **stack, int nbr);
+t_stack_node	*find_smallest(t_stack_node *stack);
+t_stack_node	*find_last_node(t_stack_node *head);
 
 // stack utils
 int stack_len(t_stack_node *stack);
@@ -85,14 +133,10 @@ void sb(t_stack_node **b, bool checker);
 void ss(t_stack_node **a, t_stack_node **b, bool checker);
 
 // Algorithm
-void sort_stack(t_stack_node **a, t_config cfg, float disorder);
-float compute_disorder(t_stack_node **a);
-void selection_sort(t_stack_node **a);
-void bucket_sort(t_stack_node **a);
-int get_position_from_index(t_stack_node *a, int index);
 
 // debugg functions
-void print_stack(t_stack_node *stack);
-void print_stack_variant(t_stack_node *stack);
+void			print_stack(t_stack_node *stack);
+void			print_stack_variant(t_stack_node *stack);
+void			print_config(t_config cfg);
 
 #endif

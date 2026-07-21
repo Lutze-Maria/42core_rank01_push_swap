@@ -6,16 +6,16 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:44:17 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/02 14:50:33 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/21 12:23:06 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 static long	ft_atol(const char *str)
 {
-	int		i;
-	int		counter;
+	int	i;
+	int	counter;
 	long	number;
 
 	i = 0;
@@ -38,7 +38,7 @@ static long	ft_atol(const char *str)
 	return (counter * number);
 }
 
-/*
+/* 
 	Create stack a with the command line values (stored in num_array)
 	checks included:
 		duplicated values
@@ -46,7 +46,7 @@ static long	ft_atol(const char *str)
 		syntax errors
  */
 
-void	stack_init(t_stack_node **a, char **num_array)
+int	stack_init(t_stack_node **a, char **num_array)
 {
 	long	nbr;
 	int		i;
@@ -58,8 +58,8 @@ void	stack_init(t_stack_node **a, char **num_array)
 		{
 			printf("Error: Wrong Syntax\n");
 			free_stack(a);
-			// error_free(a, num_array);
-			return ;
+			//error_free(a, num_array);
+			return (1);
 		}
 		nbr = ft_atol(num_array[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)
@@ -67,16 +67,17 @@ void	stack_init(t_stack_node **a, char **num_array)
 			printf("Error: Overflow\n");
 			free_stack(a);
 			//	error_free(a, num_array);
-			return ;
+			return (1);
 		}
 		if (error_duplicate(*a, (int)nbr))
 		{
 			printf("Error: Duplicate\n");
 			free_stack(a);
 			//	error_free(a, num_array);
-			return ;
+			return (1);
 		}
 		append_node(a, (int)nbr);
 		i++;
 	}
+	return (0);
 }
