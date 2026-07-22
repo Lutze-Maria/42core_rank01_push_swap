@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 10:58:37 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/22 16:15:56 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/22 16:54:16 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ void	print_container(t_container container, t_config config)
 		+ container.pa + container.pb
 		+ container.ra + container.rb + container.rr
 		+ container.rra + container.rrb + container.rrr;
-	printf("[bench] disorder: %f\n", container.disorder);
-	printf("[bench] strategy: %s\n", flag_strategy);
-	printf("[bench] total ops: %u\n", total_ops);
-	printf("[bench] sa: %u, sb: %u, ss: %u, pa: %u, pb: %u,\n", 
+	ft_printf("[bench] disorder: %f\n", container.disorder);
+	ft_printf("[bench] strategy: %s\n", flag_strategy);
+	ft_printf("[bench] total ops: %u\n", total_ops);
+	ft_printf("[bench] sa: %u, sb: %u, ss: %u, pa: %u, pb: %u,\n", 
 		container.sa, container.sb, container.ss, container.pa, container.pb);
-	printf("[bench] ra: %u, rb: %u, rr: %u, rra: %u, rrb: %u, rrr: %u\n", 
+	ft_printf("[bench] ra: %u, rb: %u, rr: %u, rra: %u, rrb: %u, rrr: %u\n", 
 		container.ra, container.rb, container.rr, container.rra, container.rrb, container.rrr);
 }
 

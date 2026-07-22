@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/07 16:07:45 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/22 16:26:11 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/22 17:00:12 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 	tokens = parse_input(argc, argv, cfg.start);
 	if (!tokens)
 	{
-		printf("Error while parsing!\n");
+		ft_printf("Error while parsing!\n");
 		return (1);
 	}
 	// STACK
@@ -47,7 +47,7 @@ int	main(int argc, char **argv)
 	}
 	assign_index(a);
 	// free_num_array(tokens);
-	print_stack(a);
+	// print_stack(a);
 	// SORTING
 	// check: stack a already sorted?
 	//		if not:  SORTING ALGORITHM MAGIC  happens here

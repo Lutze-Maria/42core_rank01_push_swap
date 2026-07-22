@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:47:17 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/22 16:15:50 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/22 16:50:08 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 # define PUSH_SWAP_H
 
 # include "libft/libft.h"
+# include "ft_printf/ft_printf.h"
 # include <limits.h>
 # include <stdbool.h>
 # include <stdlib.h>
 # include <unistd.h>
-
-// zum debuggen
-# include <stdio.h>
 
 typedef struct s_stack_node
 {

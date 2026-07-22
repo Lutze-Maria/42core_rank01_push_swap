@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:27:42 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/21 15:24:58 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/22 16:53:52 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,25 @@ void	print_tokens(char **t)
 
 void	print_config(t_config cfg)
 {
-	printf("start: %d\n", cfg.start);
+	ft_printf("start: %d\n", cfg.start);
 
-	printf("flag: ");
+	ft_printf("flag: ");
 	if (cfg.flag == FLAG_SIMPLE)
-		printf("simple\n");
+		ft_printf("simple\n");
 	else if (cfg.flag == FLAG_MEDIUM)
-		printf("medium\n");
+		ft_printf("medium\n");
 	else if (cfg.flag == FLAG_COMPLEX)
-		printf("complex\n");
+		ft_printf("complex\n");
 	else if (cfg.flag == FLAG_ADAPTIVE)
-		printf("adaptive\n");
+		ft_printf("adaptive\n");
 	else
-		printf("invalid\n");
+		ft_printf("invalid\n");
 
-	printf("bench: ");
+	ft_printf("bench: ");
 	if (cfg.bench == FLAG_BENCH)
-		printf("bench is on\n");
+		ft_printf("bench is on\n");
 	else
-		printf("bench is off\n");
+		ft_printf("bench is off\n");
 }
 
 /*
