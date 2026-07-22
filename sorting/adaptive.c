@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 10:33:18 by dpetutsc          #+#    #+#             */
-/*   Updated: 2026/07/22 16:03:26 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/22 16:27:22 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,8 @@ void	sort_stack(t_stack_node **a, t_config cfg, float disorder)
 		bucket_sort(a, &container);
 	else
 		;
+	// if "--bench" -> print container
+	if (cfg.bench == FLAG_BENCH)
+		print_container(container, cfg);
 	return ;
 }
