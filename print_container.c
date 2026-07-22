@@ -6,50 +6,55 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 10:58:37 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/22 11:12:36 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/22 14:46:55 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_container	fill_container(t_config cfg)
+t_container	init_container(void)
 {
-	
+	t_container	c = {
+		.flag = FLAG_ADAPTIVE,
+	};
+	return (c);
 }
 
-void	print_container(t_container container)
+const char	*init_flag_stretegy(t_container container, t_config config)
 {
-	printf("Computed disorder: ");
-	
-	printf("Strategy used & its complexity class: ");
-
-	printf("Total number of operations: ");
-
-	printf("Count of each operation type: ")
-
-	
+	if (config.flag == FLAG_SIMPLE)
+		return ("Simple / O(n^2)");
+	else if (config.flag == FLAG_MEDIUM)
+		return ("Medium / O(n√n)");
+	else if (config.flag == FLAG_COMPLEX)
+		return ("Complex / O(n log n)");
+	else if (config.flag == FLAG_ADAPTIVE)
+	{
+		if (container.disorder < 0.2)
+			return ("Adaptive / O(n^2)");
+		else if (container.disorder < 0.5)
+			return ("Adaptive / O(n^2)");
+		else
+			return ("Adaptive / O(n log n)");
+	}
 }
 
-/*
-void	print_config(t_config cfg)
+void	print_container(t_container container, t_config config)
 {
-	printf("start: %d\n", cfg.start);
+	unsigned int	total_ops;
+	const char		flag_strategy;
 
-	printf("flag: ");
-	if (cfg.flag == FLAG_SIMPLE)
-		printf("simple\n");
-	else if (cfg.flag == FLAG_MEDIUM)
-		printf("medium\n");
-	else if (cfg.flag == FLAG_COMPLEX)
-		printf("complex\n");
-	else if (cfg.flag == FLAG_ADAPTIVE)
-		printf("adaptive\n");
-	else
-		printf("invalid\n");
+	flag_strategy = init_flag_strategy(container, config);
+	total_ops = container.sa + container.sb + container.ss
+		+ container.pa + container.pb
+		+ container.ra + container.rb + container.rr
+		+ container.rra + container.rrb + container.rrr;
+	printf("[bench] disorder: %f\n", container.disorder);
+	printf("[bench] strategy: %s\n", flag_strategy);
+	printf("[bench] total ops: %u\n", total_ops);
+	printf("[bench] sa: %u, sb: %u, ss: %u, pa: %u, pb: %u,\n", 
+		container.sa, container.sb, container.ss, container.pa, container.pb);
+	printf("[bench] ra: %u, rb: %u, rr: %u, rra: %u, rrb: %u, rrr: %u\n", 
+		container.ra, container.rb, container.rr, container.rra, container.rrb, container.rrr);
+}
 
-	printf("bench: ");
-	if (cfg.bench == FLAG_BENCH)
-		printf("bench is on\n");
-	else
-		printf("bench is off\n");
-}*/

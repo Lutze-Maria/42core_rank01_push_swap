@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:47:17 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/22 11:11:33 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/22 14:28:23 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 
 typedef struct s_stack_node
 {
-	int 				value;
-	int 				index;
+	int					value;
+	int					index;
 	struct s_stack_node	*next;
 	struct s_stack_node	*prev;
 }	t_stack_node;
@@ -54,21 +54,20 @@ typedef struct s_config
 
 typedef struct s_container
 {
-	float	disorder;
-	bool	flag_bench;
-	bool	flag_strategy;
-	int		count_ops;
-	int		pa;
-	int		pb;
-	int		rra;
-	int		rrb;
-	int		rrr;
-	int		ra;
-	int		rb;
-	int		rr;
-	int		sa;
-	int		sb;
-	int		ss;
+	float			disorder;
+	t_flag			flag;
+	//char			flag_strategy[50];
+	unsigned int	pa;
+	unsigned int	pb;
+	unsigned int	rra;
+	unsigned int	rrb;
+	unsigned int	rrr;
+	unsigned int	ra;
+	unsigned int	rb;
+	unsigned int	rr;
+	unsigned int	sa;
+	unsigned int	sb;
+	unsigned int	ss;
 }	t_container;
 
 // parsing
@@ -121,7 +120,7 @@ int				get_distance_from_index(t_stack_node *a, int index, int max_distance);
 // print 
 // output for '--bench' flag
 void			print_container(t_container container);
-t_container		fill_container(t_config cfg);
+t_container		init_container(t_config cfg);
 // t_config
 void			print_config(t_config cfg);
 
