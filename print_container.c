@@ -6,21 +6,22 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 10:58:37 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/22 14:46:55 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/22 16:15:56 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_container	init_container(void)
+t_container	init_container(float disorder)
 {
 	t_container	c = {
 		.flag = FLAG_ADAPTIVE,
+		.disorder = disorder,
 	};
 	return (c);
 }
 
-const char	*init_flag_stretegy(t_container container, t_config config)
+const char	*init_flag_strategy(t_container container, t_config config)
 {
 	if (config.flag == FLAG_SIMPLE)
 		return ("Simple / O(n^2)");
@@ -37,12 +38,13 @@ const char	*init_flag_stretegy(t_container container, t_config config)
 		else
 			return ("Adaptive / O(n log n)");
 	}
+	return (NULL);
 }
 
 void	print_container(t_container container, t_config config)
 {
 	unsigned int	total_ops;
-	const char		flag_strategy;
+	const char		*flag_strategy;
 
 	flag_strategy = init_flag_strategy(container, config);
 	total_ops = container.sa + container.sb + container.ss

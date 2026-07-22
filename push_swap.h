@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:47:17 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/22 14:28:23 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/22 16:15:50 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ typedef struct s_container
 {
 	float			disorder;
 	t_flag			flag;
-	//char			flag_strategy[50];
 	unsigned int	pa;
 	unsigned int	pb;
 	unsigned int	rra;
@@ -98,29 +97,30 @@ void			free_stack(t_stack_node **stack);
 void			free_num_array(char **num_array);
 
 // commands
-void			pa(t_stack_node **a, t_stack_node **b, bool checker, t_container container);
-void			pb(t_stack_node **b, t_stack_node **a, bool checker, t_container container);
-void			rra(t_stack_node **a, bool checker, t_container container);
-void			rrb(t_stack_node **b, bool checker, t_container container);
-void			rrr(t_stack_node **a, t_stack_node **b, bool checker, t_container container);
-void			ra(t_stack_node **a, bool checker, t_container container);
-void			rb(t_stack_node **b, bool checker, t_container container);
-void			rr(t_stack_node **a, t_stack_node **b, bool checker, t_container container);
-void			sa(t_stack_node **a, bool checker, t_container container);
-void			sb(t_stack_node **b, bool checker, t_container container);
-void			ss(t_stack_node **a, t_stack_node **b, bool checker, t_container container);
+void			pa(t_stack_node **a, t_stack_node **b, bool checker, t_container *container);
+void			pb(t_stack_node **b, t_stack_node **a, bool checker, t_container *container);
+void			rra(t_stack_node **a, bool checker, t_container *container);
+void			rrb(t_stack_node **b, bool checker, t_container *container);
+void			rrr(t_stack_node **a, t_stack_node **b, bool checker, t_container *container);
+void			ra(t_stack_node **a, bool checker, t_container *container);
+void			rb(t_stack_node **b, bool checker, t_container *container);
+void			rr(t_stack_node **a, t_stack_node **b, bool checker, t_container *container);
+void			sa(t_stack_node **a, bool checker, t_container *container);
+void			sb(t_stack_node **b, bool checker, t_container *container);
+void			ss(t_stack_node **a, t_stack_node **b, bool checker, t_container *container);
 
 // Algorithm
 void			sort_stack(t_stack_node **a, t_config cfg, float disorder);
 float			compute_disorder(t_stack_node **a);
-void			selection_sort(t_stack_node **a);
-void			bucket_sort(t_stack_node **a);
+void			selection_sort(t_stack_node **a, t_container *container);
+void			bucket_sort(t_stack_node **a, t_container *container);
 int				get_distance_from_index(t_stack_node *a, int index, int max_distance);
 
 // print 
 // output for '--bench' flag
-void			print_container(t_container container);
-t_container		init_container(t_config cfg);
+t_container		init_container(float disorder);
+const char		*init_flag_strategy(t_container container, t_config config);
+void			print_container(t_container container, t_config config);
 // t_config
 void			print_config(t_config cfg);
 

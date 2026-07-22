@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/07 16:07:45 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/21 15:38:47 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/22 15:37:41 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	main(int argc, char **argv)
 	// SORTING
 	// check: stack a already sorted?
 	//		if not:  SORTING ALGORITHM MAGIC  happens here
-	//		is_bench flag? if No: use '--adaptive' as default
 	sort_stack(&a, cfg, compute_disorder(&a));
 	// CLEAN UP stack
 	free_stack(&a);

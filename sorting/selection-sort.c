@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   selection-sort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpetutsc <dpetutsc@student.42vienna.com>   +#+  +:+       +#+        */
+/*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 10:33:06 by dpetutsc          #+#    #+#             */
-/*   Updated: 2026/07/14 10:40:27 by dpetutsc         ###   ########.fr       */
+/*   Updated: 2026/07/22 15:55:04 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 #include <stdint.h>
 
-void	selection_sort(t_stack_node **a)
+void	selection_sort(t_stack_node **a, t_container *container)
 {
 	int				index;
 	int				target_distance;
@@ -28,7 +28,7 @@ void	selection_sort(t_stack_node **a)
 	{
 		if ((*a)->index == index)
 		{
-			pb(b, a, false);
+			pb(b, a, false, container);
 			index--;
 		}
 		else
@@ -39,17 +39,17 @@ void	selection_sort(t_stack_node **a)
 				return (void)write(2, "Error: Couldnt find index\n", 26);
 			while (target_distance > 0)
 			{
-				ra(a, false);
+				ra(a, false, container);
 				target_distance--;
 			}
 			while (target_distance < 0)
 			{
-				rra(a, false);
+				rra(a, false, container);
 				target_distance++;
 			}
 		}
 	}
 	while (*b)
-		pa(a, b, false);
+		pa(a, b, false, container);
 	free(b);
 }
