@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:28:22 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/21 10:29:44 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/22 10:46:43 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,18 @@ static void	push(t_stack_node **dest, t_stack_node **src)
 	}
 }
 
-void	pa(t_stack_node **a, t_stack_node **b, bool checker)
+void	pa(t_stack_node **a, t_stack_node **b, bool checker, t_container container)
 {
 	push(a, b);
+	container.pa++;
 	if (!checker)
 		write(1, "pa\n", 3);
 }
 
-void	pb(t_stack_node **b, t_stack_node **a, bool checker)
+void	pb(t_stack_node **b, t_stack_node **a, bool checker, t_container container)
 {
 	push(b, a);
+	container.pb++;
 	if (!checker)
 		write(1, "pb\n", 3);
 }

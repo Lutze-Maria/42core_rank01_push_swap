@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   command_rotate.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/22 10:55:39 by lschawer          #+#    #+#             */
+/*   Updated: 2026/07/22 10:55:42 by lschawer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -22,24 +33,27 @@ static void	rotate(t_stack_node **stack)
 	first->next = NULL;
 }
 
-void	ra(t_stack_node **a, bool checker)
+void	ra(t_stack_node **a, bool checker, t_container container)
 {
 	rotate(a);
+	container.ra++;
 	if (!checker)
 		write(1, "ra\n", 3);
 }
 
-void	rb(t_stack_node **b, bool checker)
+void	rb(t_stack_node **b, bool checker, t_container container)
 {
 	rotate(b);
+	container.rb++;
 	if (!checker)
 		write(1, "rb\n", 3);
 }
 
-void	rr(t_stack_node **a, t_stack_node **b, bool checker)
+void	rr(t_stack_node **a, t_stack_node **b, bool checker, t_container container)
 {
 	rotate(a);
 	rotate(b);
+	container.rr++;
 	if (!checker)
 		write(1, "rr\n", 3);
 }
