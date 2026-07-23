@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/07 16:07:45 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/23 11:31:36 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/23 20:50:49 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	cfg = parse_config(argc, argv);
 	tokens = parse_input(argc, argv, cfg.start);
 	if (!tokens)
-		return ((void)ft_printf("Error while parsing!\n"), 1);
+		return ((void)ft_printf(1, "Error\n"), 1);
 	if (stack_init(&a, tokens))
 		return (free_num_array(tokens), 1);
 	free_num_array(tokens);

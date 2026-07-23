@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 10:58:37 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/23 11:13:26 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/23 20:51:34 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ void	print_container(t_container container, t_config config)
 	total_ops = container.sa + container.sb + container.ss + container.pa
 		+ container.pb + container.ra + container.rb + container.rr
 		+ container.rra + container.rrb + container.rrr;
-	ft_printf("[bench] disorder: %d.%d%%\n", (container.disorder / 100),
+	ft_printf(2, "[bench] disorder: %d.%d%%\n", (container.disorder / 100),
 		(container.disorder % 100));
-	ft_printf("[bench] strategy: %s\n", flag_strategy);
-	ft_printf("[bench] total ops: %u\n", total_ops);
-	ft_printf("[bench] sa: %u, sb: %u, ss: %u, pa: %u, pb: %u,\n", container.sa,
+	ft_printf(2, "[bench] strategy: %s\n", flag_strategy);
+	ft_printf(2, "[bench] total ops: %u\n", total_ops);
+	ft_printf(2, "[bench] sa: %u, sb: %u, ss: %u, pa: %u, pb: %u,\n", container.sa,
 		container.sb, container.ss, container.pa, container.pb);
-	ft_printf("[bench] ra: %u, rb: %u, rr: %u, rra: %u, rrb: %u, rrr: %u\n",
+	ft_printf(2, "[bench] ra: %u, rb: %u, rr: %u, rra: %u, rrb: %u, rrr: %u\n",
 		container.ra, container.rb, container.rr, container.rra, container.rrb,
 		container.rrr);
 }

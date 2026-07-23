@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 10:33:18 by dpetutsc          #+#    #+#             */
-/*   Updated: 2026/07/23 10:51:47 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/23 21:04:18 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,24 @@ float	compute_disorder(t_stack_node **a)
 void	sort_stack(t_stack_node **a, t_config cfg, float disorder)
 {
 	t_container	container;
+	bool		checker;
 
+	checker = true;
 	container = init_container(disorder);
 	if (disorder != 0)
 	{
 		if (cfg.flag == FLAG_SIMPLE)
-			selection_sort(a, &container);
+			selection_sort(a, &container, checker);
 		else if (cfg.flag == FLAG_MEDIUM)
-			bucket_sort(a, &container);
+			bucket_sort(a, &container, checker);
 		else if (cfg.flag == FLAG_COMPLEX)
-			radix_sort(a, &container);
+			radix_sort(a, &container, checker);
 		else if (disorder < .2)
-			selection_sort(a, &container);
+			selection_sort(a, &container, checker);
 		else if (disorder < .5)
-			bucket_sort(a, &container);
+			bucket_sort(a, &container, checker);
 		else
-			radix_sort(a, &container);
+			radix_sort(a, &container, checker);
 	}
 	if (cfg.bench == FLAG_BENCH)
 		print_container(container, cfg);

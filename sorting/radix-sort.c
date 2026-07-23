@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   radix-sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpetutsc <dpetutsc@student.42vienna.com>   +#+  +:+       +#+        */
+/*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 10:30:32 by dpetutsc          #+#    #+#             */
-/*   Updated: 2026/07/23 11:38:52 by dpetutsc         ###   ########.fr       */
+/*   Updated: 2026/07/23 21:01:07 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	calculate_bits(int n)
 	return (bits);
 }
 
-void	radix_sort(t_stack_node **a, t_container *container)
+void	radix_sort(t_stack_node **a, t_container *container, bool checker)
 {
 	t_stack_node	*b;
 	int				bits;
@@ -45,13 +45,13 @@ void	radix_sort(t_stack_node **a, t_container *container)
 		while (i < len)
 		{
 			if ((((*a)->index >> bit) & 1) == 0)
-				pb(&b, a, true, container);
+				pb(&b, a, checker, container);
 			else
-				ra(a, true, container);
+				ra(a, checker, container);
 			i++;
 		}
 		while (b)
-			pa(a, &b, true, container);
+			pa(a, &b, checker, container);
 		bit++;
 	}
 }

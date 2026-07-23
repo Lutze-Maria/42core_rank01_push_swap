@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:47:17 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/23 10:53:31 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/23 21:25:53 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,11 +123,11 @@ void					sort_stack(t_stack_node **a, t_config cfg,
 							float disorder);
 float					compute_disorder(t_stack_node **a);
 void					selection_sort(t_stack_node **a,
-							t_container *container);
-void					bucket_sort(t_stack_node **a, t_container *container);
+							t_container *container, bool checker);
+void					bucket_sort(t_stack_node **a, t_container *container, bool checker);
 int						get_distance_from_index(t_stack_node *a, int index,
 							int max_distance);
-void					radix_sort(t_stack_node **a, t_container *container);
+void					radix_sort(t_stack_node **a, t_container *container, bool checker);
 
 // print
 // output for '--bench' flag

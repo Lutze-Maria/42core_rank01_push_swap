@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 10:33:06 by dpetutsc          #+#    #+#             */
-/*   Updated: 2026/07/23 10:30:51 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/23 21:01:36 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	move_to_target(t_stack_node **a, int target_distance, bool checker,
 	}
 }
 
-void	selection_sort(t_stack_node **a, t_container *container)
+void	selection_sort(t_stack_node **a, t_container *container, bool checker)
 {
 	int				index;
 	t_stack_node	*b;
@@ -40,7 +40,7 @@ void	selection_sort(t_stack_node **a, t_container *container)
 	{
 		if ((*a)->index == index)
 		{
-			pb(&b, a, true, container);
+			pb(&b, a, checker, container);
 			index++;
 		}
 		else
@@ -48,10 +48,10 @@ void	selection_sort(t_stack_node **a, t_container *container)
 			target_distance = get_distance_from_index(*a, index, (index + 1)
 					/ 2);
 			if (target_distance == INT_MIN)
-				return ((void)write(2, "Error: Couldnt find index\n", 26));
-			move_to_target(a, target_distance, true, container);
+				return ((void)write(2, "Error\n", 26));
+			move_to_target(a, target_distance, checker, container);
 		}
 	}
 	while (b)
-		pa(a, &b, true, container);
+		pa(a, &b, checker, container);
 }

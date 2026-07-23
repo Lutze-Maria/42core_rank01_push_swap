@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:44:17 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/22 17:15:45 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/23 20:52:32 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,19 @@ int	stack_init(t_stack_node **a, char **num_array)
 	{
 		if (!error_syntax(num_array[i]))
 		{
-			ft_printf("Error: Syntax\n");
+			ft_printf(1, "Error\n");
 			free_stack(a);
 			return (1);
 		}
 		nbr = ft_atol(num_array[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)
 		{
-			ft_printf("Error: Overflow\n");
+			ft_printf(1, "Error\n");
 			free_stack(a);
 			return (1);
 		}
 		if (error_duplicate(*a, (int)nbr))
-			return (free_stack(a), ft_printf("Error: Duplicate\n"), 1);
+			return (free_stack(a), ft_printf(1, "Error\n"), 1);
 		append_node(a, (int)nbr);
 		i++;
 	}

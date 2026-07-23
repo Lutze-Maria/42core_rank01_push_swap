@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 18:34:17 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/22 10:58:16 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/23 21:26:18 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,34 +36,36 @@ t_bench	check_bench(char *bench)
 	return (FLAG_BENCH_INVALID);
 }
 
+static void	set_config_flag(t_config *cfg, char *arg)
+{
+	t_flag	tmp_flag;
+	t_bench	tmp_bench;
+
+	tmp_flag = check_flag(arg);
+	tmp_bench = check_bench(arg);
+	if (tmp_flag == FLAG_INVALID && tmp_bench == FLAG_BENCH)
+		cfg->bench = tmp_bench;
+	if (tmp_flag != FLAG_INVALID && tmp_bench == FLAG_BENCH_INVALID)
+		cfg->flag = tmp_flag;
+}
+
 t_config	parse_config(int argc, char **argv)
 {
 	t_config	cfg;
-	t_flag		tmp_flag;
-	t_bench		tmp_bench;
+	int		i;
 
 	cfg.flag = FLAG_ADAPTIVE;
 	cfg.bench = FLAG_BENCH_INVALID;
 	cfg.start = 1;
-	if (argc > 1 && argv[1][0] == '-' && argv[1][1] == '-')
+	i = 1;
+	while (i < argc && i <= 2)
 	{
-		tmp_flag = check_flag(argv[1]);
-		tmp_bench = check_bench(argv[1]);
-		if (tmp_flag == FLAG_INVALID && tmp_bench == FLAG_BENCH)
-			cfg.bench = tmp_bench;
-		if (tmp_flag != FLAG_INVALID && tmp_bench == FLAG_BENCH_INVALID)
-			cfg.flag = tmp_flag;
-		cfg.start += 1;
-	}
-	if (argc > 2 && argv[2][0] == '-' && argv[2][1] == '-')
-	{
-		tmp_flag = check_flag(argv[2]);
-		tmp_bench = check_bench(argv[2]);
-		if (tmp_flag == FLAG_INVALID && tmp_bench == FLAG_BENCH)
-			cfg.bench = tmp_bench;
-		if (tmp_flag != FLAG_INVALID && tmp_bench == FLAG_BENCH_INVALID)
-			cfg.flag = tmp_flag;
-		cfg.start += 1;
+		if (argv[i][0] == '-' && argv[i][1] == '-')
+		{
+			set_config_flag(&cfg, argv[i]);
+			cfg.start++;
+		}
+		i++;
 	}
 	return (cfg);
 }
@@ -78,18 +80,21 @@ char	*join_args(int argc, char **argv, int start)
 	i = start;
 	while (i < argc)
 	{
-		tmp = result;
-		result = ft_strjoin(result ? result : "", argv[i]);
-		free(tmp);
+		if (result)
+			tmp = ft_strjoin(result, argv[i]);
+		else
+			tmp = ft_strjoin("", argv[i]);
+		free(result);
+		result = tmp;
 		if (!result)
-			free(result);
+			return (NULL);
 		if (i < argc - 1)
 		{
-			tmp = result;
-			result = ft_strjoin(result, " ");
-			free(tmp);
+			tmp = ft_strjoin(result, " ");
+			free(result);
+			result = tmp;
 			if (!result)
-				free(result);
+				return (NULL);
 		}
 		i++;
 	}
