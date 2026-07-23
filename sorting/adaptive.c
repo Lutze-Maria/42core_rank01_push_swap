@@ -48,14 +48,13 @@ void	sort_stack(t_stack_node **a, t_config cfg, float disorder)
 	else if (cfg.flag == FLAG_MEDIUM)
 		bucket_sort(a, &container);
 	else if (cfg.flag == FLAG_COMPLEX)
-		;
+		radix_sort(a, &container);
 	else if (disorder < .2)
 		selection_sort(a, &container);
 	else if (disorder < .5)
 		bucket_sort(a, &container);
 	else
-		;
-	// if "--bench" -> print container
+		radix_sort(a, &container);
 	if (cfg.bench == FLAG_BENCH)
 		print_container(container, cfg);
 	return ;

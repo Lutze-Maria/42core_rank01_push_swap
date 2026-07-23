@@ -21,7 +21,7 @@ SRCS        = 	main.c \
 				commands/command_rotate.c commands/command_swap.c \
 				sorting/selection-sort.c  sorting/bucket-sort.c\
 				sorting/adaptive.c build_stack/test_stack.c\
-				sorting/utils.c\
+				sorting/utils.c sorting/radix-sort.c\
 				print_container.c
 
 

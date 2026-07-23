@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 
 	ft_printf("argc = %d\n", argc);
 	for (int i = 0; i < argc; i++)
-    	ft_printf("argv[%d] = '%s'\n", i, argv[i]);
+		ft_printf("argv[%d] = '%s'\n", i, argv[i]);
 	// initialize stack a & b, point to NULL
 	a = NULL;
 	b = NULL;

@@ -26,8 +26,8 @@ static int	sqrt(int n)
 static void	sort_into_buckets(t_stack_node **a, t_stack_node **b,
 		int bucket_size, t_container *container)
 {
-	int	bucket;
-	int	i;
+	int		bucket;
+	int		i;
 	bool	checker;
 
 	checker = false;
@@ -50,13 +50,30 @@ static void	sort_into_buckets(t_stack_node **a, t_stack_node **b,
 	}
 }
 
-static void	sort_buckets(t_stack_node **a, t_stack_node **b, int bucket_size, t_container *container)
+static void	move_to_target(t_stack_node *stack, int target_distance,
+		bool checker, t_container *container)
+{
+	if (target_distance == INT_MIN)
+		return ((void)write(2, "Error: Couldnt find index\n", 26));
+	while (target_distance > 0)
+	{
+		rb(&stack, checker, container);
+		target_distance--;
+	}
+	while (target_distance < 0)
+	{
+		rrb(&stack, checker, container);
+		target_distance++;
+	}
+}
+
+static void	sort_buckets(t_stack_node **a, t_stack_node **b, int bucket_size,
+		t_container *container)
 {
 	int		index;
-	int		target_distance;
 	bool	checker;
 
-	checker = false;
+	checker = true;
 	index = stack_len(*b) - 1;
 	while (*b)
 	{
@@ -67,34 +84,19 @@ static void	sort_buckets(t_stack_node **a, t_stack_node **b, int bucket_size, t_
 		}
 		else
 		{
-			target_distance = get_distance_from_index(*b, index, bucket_size);
-			if (target_distance == INT_MIN)
-				return (void)write(2, "Error: Couldnt find index\n", 26);
-			while (target_distance > 0)
-			{
-				rb(b, checker, container);
-				target_distance--;
-			}
-			while (target_distance < 0)
-			{
-				rrb(b, checker, container);
-				target_distance++;
-			}
+			move_to_target(*b, get_distance_from_index(*b, index, (index + 1)
+					/ 2), checker, container);
 		}
 	}
 }
 
 void	bucket_sort(t_stack_node **a, t_container *container)
 {
-	t_stack_node	**b;
+	t_stack_node	*b;
 	int				bucket_size;
 
-	b = malloc(sizeof(t_stack_node **));
-	if (!b)
-		return ;
-	*b = NULL;
+	b = NULL;
 	bucket_size = sqrt(stack_len(*a));
-	sort_into_buckets(a, b, bucket_size, container);
-	sort_buckets(a, b, bucket_size, container);
-	free(b);
+	sort_into_buckets(a, &b, bucket_size, container);
+	sort_buckets(a, &b, bucket_size, container);
 }
