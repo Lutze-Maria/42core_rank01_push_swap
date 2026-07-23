@@ -30,11 +30,9 @@ static void	rev_rotate(t_stack_node **stack)
 	if (!stack || !*stack || !(*stack)->next)
 		return ;
 	last = find_last_node(*stack);
-	// detach last node
 	if (last->prev)
 	{
 		last->prev->next = NULL;
-		// move it to front
 		last->prev = NULL;
 	}
 	last->next = *stack;
@@ -58,7 +56,8 @@ void	rrb(t_stack_node **b, bool checker, t_container *container)
 		write(1, "rrb\n", 4);
 }
 
-void	rrr(t_stack_node **a, t_stack_node **b, bool checker, t_container *container)
+void	rrr(t_stack_node **a, t_stack_node **b, bool checker,
+		t_container *container)
 {
 	rev_rotate(a);
 	rev_rotate(b);
@@ -119,6 +118,3 @@ int	main(int argc, char **argv)
 	return (0);
 }
 */
-// cc -Wall -Wextra
-//	-Werror command_reverse_rot.c ../build_stack/*.c ../parsing/*.c ../libft/libft.a
-//-I../libft -I../build_stack -I../parsing -I.. -o test_reverserot

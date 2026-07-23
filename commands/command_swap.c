@@ -43,7 +43,8 @@ void	sb(t_stack_node **b, bool checker, t_container *container)
 		write(1, "sb\n", 3);
 }
 
-void	ss(t_stack_node **a, t_stack_node **b, bool checker, t_container *container)
+void	ss(t_stack_node **a, t_stack_node **b, bool checker,
+		t_container *container)
 {
 	swap(a);
 	swap(b);
@@ -110,7 +111,3 @@ int	main(int argc, char **argv)
 	//free_stack(&b);
 	return (0);
 }*/
-
-// cc -Wall -Wextra
-//	-Werror command_swap.c ../build_stack/*.c ../parsing/*.c ../libft/libft.a
-//-I../libft -I../build_stack -I../parsing -I.. -o test_swap

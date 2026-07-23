@@ -21,7 +21,7 @@ int	error_syntax(char *str)
 		return (0);
 	if (str[i] == '+' || str[i] == '-')
 		i++;
-	if (!str[i]) // only "+" or "-"
+	if (!str[i])
 		return (0);
 	while (str[i])
 	{

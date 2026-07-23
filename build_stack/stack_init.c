@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 static long	ft_atol(const char *str)
 {
@@ -38,7 +38,7 @@ static long	ft_atol(const char *str)
 	return (counter * number);
 }
 
-/* 
+/*
 	Create stack a with the command line values (stored in num_array)
 	checks included:
 		duplicated values
@@ -68,11 +68,7 @@ int	stack_init(t_stack_node **a, char **num_array)
 			return (1);
 		}
 		if (error_duplicate(*a, (int)nbr))
-		{
-			ft_printf("Error: Duplicate\n");
-			free_stack(a);
-			return (1);
-		}
+			return (free_stack(a), ft_printf("Error: Duplicate\n"), 1);
 		append_node(a, (int)nbr);
 		i++;
 	}

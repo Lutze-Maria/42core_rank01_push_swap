@@ -57,5 +57,6 @@ int	main(void)
 }*/
 
 // cc -Wall -Wextra
-//	-Werror test_stack.c stack_init.c stack_utils.c stack_error_checks.c stack_free.c ../libft/libft.a
+//	-Werror test_stack.c stack_init.c
+// stack_utils.c stack_error_checks.c stack_free.c ../libft/libft.a
 // -I../libft -I.. -o test_stack

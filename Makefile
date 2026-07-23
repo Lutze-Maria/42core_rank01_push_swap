@@ -4,7 +4,7 @@
 # 1. Variables
 NAME        = push_swap
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -g
+CFLAGS      = -Wall -Wextra -Werror
 
 RM          = rm -f
 HEADER		= push_swap.h
