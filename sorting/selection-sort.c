@@ -35,13 +35,13 @@ void	selection_sort(t_stack_node **a, t_container *container)
 	int				target_distance;
 
 	b = NULL;
-	index = stack_len(*a) - 1;
+	index = 0;
 	while (*a)
 	{
 		if ((*a)->index == index)
 		{
 			pb(&b, a, true, container);
-			index--;
+			index++;
 		}
 		else
 		{

@@ -30,7 +30,7 @@ static void	sort_into_buckets(t_stack_node **a, t_stack_node **b,
 	int		i;
 	bool	checker;
 
-	checker = false;
+	checker = true;
 	i = 0;
 	bucket = 1;
 	while (*a)
