@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bucket-sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpetutsc <dpetutsc@student.42vienna.com>   +#+  +:+       +#+        */
+/*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 10:30:32 by dpetutsc          #+#    #+#             */
-/*   Updated: 2026/07/14 10:30:32 by dpetutsc         ###   ########.fr       */
+/*   Updated: 2026/07/23 10:30:29 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,24 @@ static int	sqrt(int n)
 }
 
 static void	sort_into_buckets(t_stack_node **a, t_stack_node **b,
-		int bucket_size)
+		int bucket_size, t_container *container)
 {
 	int	bucket;
 	int	i;
+	bool	checker;
 
+	checker = false;
 	i = 0;
 	bucket = 1;
 	while (*a)
 	{
 		if ((*a)->index < bucket_size * bucket)
 		{
-			pb(b, a, false);
+			pb(b, a, checker, container);
 			i++;
 		}
 		else
-			ra(a, false);
+			ra(a, checker, container);
 		if (i == bucket_size)
 		{
 			bucket++;
@@ -48,44 +50,41 @@ static void	sort_into_buckets(t_stack_node **a, t_stack_node **b,
 	}
 }
 
-static void	move_distance(t_stack_node **b, int target_distance)
+static void	sort_buckets(t_stack_node **a, t_stack_node **b, int bucket_size, t_container *container)
 {
-	while (target_distance > 0)
-	{
-		rb(b, false);
-		target_distance--;
-	}
-	while (target_distance < 0)
-	{
-		rrb(b, false);
-		target_distance++;
-	}
-}
+	int		index;
+	int		target_distance;
+	bool	checker;
 
-static void	sort_buckets(t_stack_node **a, t_stack_node **b, int bucket_size)
-{
-	int	index;
-	int	target_distance;
-
+	checker = false;
 	index = stack_len(*b) - 1;
 	while (*b)
 	{
 		if ((*b)->index == index)
 		{
-			pa(a, b, false);
+			pa(a, b, checker, container);
 			index--;
 		}
 		else
 		{
 			target_distance = get_distance_from_index(*b, index, bucket_size);
 			if (target_distance == INT_MIN)
-				return ((void)write(2, "Error: index not found.\n", 24));
-			move_distance(b, target_distance);
+				return (void)write(2, "Error: Couldnt find index\n", 26);
+			while (target_distance > 0)
+			{
+				rb(b, checker, container);
+				target_distance--;
+			}
+			while (target_distance < 0)
+			{
+				rrb(b, checker, container);
+				target_distance++;
+			}
 		}
 	}
 }
 
-void	bucket_sort(t_stack_node **a)
+void	bucket_sort(t_stack_node **a, t_container *container)
 {
 	t_stack_node	**b;
 	int				bucket_size;
@@ -95,7 +94,7 @@ void	bucket_sort(t_stack_node **a)
 		return ;
 	*b = NULL;
 	bucket_size = sqrt(stack_len(*a));
-	sort_into_buckets(a, b, bucket_size);
-	sort_buckets(a, b, bucket_size);
+	sort_into_buckets(a, b, bucket_size, container);
+	sort_buckets(a, b, bucket_size, container);
 	free(b);
 }

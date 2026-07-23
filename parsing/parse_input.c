@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 18:34:17 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/21 15:43:46 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/22 10:58:16 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ t_config	parse_config(int argc, char **argv)
 			cfg.flag = tmp_flag;
 		cfg.start += 1;
 	}
-	//print_config(cfg);
 	return (cfg);
 }
 
@@ -137,7 +136,6 @@ int	main(int argc, char **argv)
 	return (0);
 }
 */
-
 
 // cc -Wall -Wextra -Werror test_parser.c ft_split.c parse_input.c ../libft/libft.a -I../libft -I.. -o push_swap
 // chmod +x test.sh

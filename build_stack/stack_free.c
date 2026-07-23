@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:35:49 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/21 12:05:49 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/22 10:56:13 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,4 @@ void	free_num_array(char **num_array)
 	}
 	free (num_array);
 }
-/*
-void	free_tokens(char **tokens)
-{
-	int	i;
 
-	i = 0;
-	if (!tokens)
-		return ;
-	while (tokens[i])
-		free(tokens[i++]);
-	free(tokens);
-}*/

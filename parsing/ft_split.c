@@ -6,23 +6,11 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:18:23 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/21 13:20:05 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/22 10:57:19 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-// static char	**ft_free_all(char **result, int index)
-// {
-// 	while (index >= 0)
-// 	{
-// 		free(result[index]);
-// 		index--;
-// 	}
-// 	free(result);
-// 	return (NULL);
-// }
-
 
 static int	count_words(char const *s, char c)
 {

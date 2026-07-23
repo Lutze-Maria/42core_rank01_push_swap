@@ -6,18 +6,11 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:35:12 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/21 10:35:42 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/22 10:55:59 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-/*
-Valid: "0" "+42" "-42" "123"
-Invalid: "" "+" "-" "12a3"
-" 42" (handled by split)
-"4 2" (handled by split)
-*/
 
 int	error_syntax(char *str)
 {
