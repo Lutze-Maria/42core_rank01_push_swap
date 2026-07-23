@@ -65,12 +65,9 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	words = count_words(s, c);
-	result = malloc(sizeof(char *) * (words + 1));
+	result = ft_calloc(sizeof(char *), (words + 1));
 	if (!result)
 		return (NULL);
-	i = 0;
-	while (i < words + 1)
-		result[i++] = NULL;
 	i = 0;
 	while (*s)
 	{
@@ -80,41 +77,9 @@ char	**ft_split(char const *s, char c)
 		{
 			result[i] = fill_word(&s, c);
 			if (!result[i])
-			{
-				free_num_array(result);
-				return (NULL);
-			}
+				return (free_num_array(result), NULL);
 			i++;
 		}
 	}
 	return (result);
 }
-
-/*
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdbool.h>
-
-int	main(void)
-{
-	char	*s = "zero one two three four";
-	char	**split_string;
-	int		i;
-
-	split_string = ft_split(s, ' ');
-	if (!split_string)
-	{
-		free_num_array(split_string);
-		return (1);
-	}
-	i = 0;
-	while (split_string[i])
-	{
-		printf("%s\n", split_string[i]);
-		i++;
-	}
-	free_num_array(split_string);
-	return (0);
-}*/
-
-// cc -Wall -Wextra -Werror ft_split.c -I.. -o test_split
