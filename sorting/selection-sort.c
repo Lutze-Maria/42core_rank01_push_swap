@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 10:33:06 by dpetutsc          #+#    #+#             */
-/*   Updated: 2026/07/22 15:55:04 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/23 10:30:51 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ void	selection_sort(t_stack_node **a, t_container *container)
 	int				index;
 	int				target_distance;
 	t_stack_node	**b;
+	bool	checker;
 
+	checker = false;
 	b = malloc(sizeof(t_stack_node **));
 	if (!b)
 		return ;
@@ -28,7 +30,7 @@ void	selection_sort(t_stack_node **a, t_container *container)
 	{
 		if ((*a)->index == index)
 		{
-			pb(b, a, false, container);
+			pb(b, a, checker, container);
 			index--;
 		}
 		else
@@ -39,17 +41,17 @@ void	selection_sort(t_stack_node **a, t_container *container)
 				return (void)write(2, "Error: Couldnt find index\n", 26);
 			while (target_distance > 0)
 			{
-				ra(a, false, container);
+				ra(a, checker, container);
 				target_distance--;
 			}
 			while (target_distance < 0)
 			{
-				rra(a, false, container);
+				rra(a, checker, container);
 				target_distance++;
 			}
 		}
 	}
 	while (*b)
-		pa(a, b, false, container);
+		pa(a, b, checker, container);
 	free(b);
 }

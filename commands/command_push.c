@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:28:22 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/22 15:49:41 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/23 10:29:46 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	pa(t_stack_node **a, t_stack_node **b, bool checker, t_container *container
 {
 	push(a, b);
 	container->pa++;
-	if (!checker)
+	if (checker)
 		write(1, "pa\n", 3);
 }
 
@@ -51,7 +51,7 @@ void	pb(t_stack_node **b, t_stack_node **a, bool checker, t_container *container
 {
 	push(b, a);
 	container->pb++;
-	if (!checker)
+	if (checker)
 		write(1, "pb\n", 3);
 }
 

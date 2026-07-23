@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:29:50 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/22 15:50:08 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/23 10:29:55 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	rra(t_stack_node **a, bool checker, t_container *container)
 {
 	rev_rotate(a);
 	container->rra++;
-	if (!checker)
+	if (checker)
 		write(1, "rra\n", 4);
 }
 
@@ -54,7 +54,7 @@ void	rrb(t_stack_node **b, bool checker, t_container *container)
 {
 	rev_rotate(b);
 	container->rrb++;
-	if (!checker)
+	if (checker)
 		write(1, "rrb\n", 4);
 }
 
@@ -63,7 +63,7 @@ void	rrr(t_stack_node **a, t_stack_node **b, bool checker, t_container *containe
 	rev_rotate(a);
 	rev_rotate(b);
 	container->rrr++;
-	if (!checker)
+	if (checker)
 		write(1, "rrr\n", 4);
 }
 

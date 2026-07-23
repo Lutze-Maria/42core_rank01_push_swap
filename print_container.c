@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 10:58:37 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/22 16:54:16 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/23 10:54:11 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 t_container	init_container(float disorder)
 {
+	int	disorder_formatted;
+	
+	disorder_formatted = (int)(disorder * 10000);
 	t_container	c = {
 		.flag = FLAG_ADAPTIVE,
-		.disorder = disorder,
+		.disorder = disorder_formatted,
 	};
 	return (c);
 }
@@ -51,7 +54,7 @@ void	print_container(t_container container, t_config config)
 		+ container.pa + container.pb
 		+ container.ra + container.rb + container.rr
 		+ container.rra + container.rrb + container.rrr;
-	ft_printf("[bench] disorder: %f\n", container.disorder);
+	ft_printf("[bench] disorder: %d.%d\n", (container.disorder / 100), (container.disorder % 100));
 	ft_printf("[bench] strategy: %s\n", flag_strategy);
 	ft_printf("[bench] total ops: %u\n", total_ops);
 	ft_printf("[bench] sa: %u, sb: %u, ss: %u, pa: %u, pb: %u,\n", 

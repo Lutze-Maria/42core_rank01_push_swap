@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:47:17 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/22 16:50:08 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/23 10:53:31 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_config
 
 typedef struct s_container
 {
-	float			disorder;
+	int				disorder;
 	t_flag			flag;
 	unsigned int	pa;
 	unsigned int	pb;
