@@ -18,8 +18,19 @@ t_container	init_container(float disorder)
 	t_container	c;
 
 	disorder_formatted = (int)(disorder * 10000);
-	c.flag = FLAG_ADAPTIVE;
 	c.disorder = disorder_formatted;
+	c.flag = FLAG_ADAPTIVE;
+	c.pa = 0;
+	c.pb = 0;
+	c.rra = 0;
+	c.rrb = 0;
+	c.rrr = 0;
+	c.ra = 0;
+	c.rb = 0;
+	c.rr = 0;
+	c.sa = 0;
+	c.sb = 0;
+	c.ss = 0;
 	return (c);
 }
 

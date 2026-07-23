@@ -43,18 +43,21 @@ void	sort_stack(t_stack_node **a, t_config cfg, float disorder)
 	t_container	container;
 
 	container = init_container(disorder);
-	if (cfg.flag == FLAG_SIMPLE)
-		selection_sort(a, &container);
-	else if (cfg.flag == FLAG_MEDIUM)
-		bucket_sort(a, &container);
-	else if (cfg.flag == FLAG_COMPLEX)
-		radix_sort(a, &container);
-	else if (disorder < .2)
-		selection_sort(a, &container);
-	else if (disorder < .5)
-		bucket_sort(a, &container);
-	else
-		radix_sort(a, &container);
+	if (disorder != 0)
+	{
+		if (cfg.flag == FLAG_SIMPLE)
+			selection_sort(a, &container);
+		else if (cfg.flag == FLAG_MEDIUM)
+			bucket_sort(a, &container);
+		else if (cfg.flag == FLAG_COMPLEX)
+			radix_sort(a, &container);
+		else if (disorder < .2)
+			selection_sort(a, &container);
+		else if (disorder < .5)
+			bucket_sort(a, &container);
+		else
+			radix_sort(a, &container);
+	}
 	if (cfg.bench == FLAG_BENCH)
 		print_container(container, cfg);
 	return ;
