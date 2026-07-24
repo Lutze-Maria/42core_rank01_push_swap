@@ -4,7 +4,7 @@
 # 1. Variables
 NAME        = push_swap
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror
+CFLAGS      = -Wall -Wextra -Werror -g
 
 RM          = rm -f
 HEADER		= push_swap.h
@@ -14,14 +14,15 @@ INCLUDES 	= -I. -Ilibft -Iparsing -Ibuild_stack
 
 # 2. Source Files
 SRCS        = 	main.c \
-				parsing/ft_split.c parsing/parse_input.c \
+				parsing/ft_split.c parsing/parse_input.c parsing/check_flags.c \
+				parsing/test_parser.c \
 				build_stack/stack_init.c build_stack/stack_utils.c \
 				build_stack/stack_error_checks.c build_stack/stack_free.c \
 				commands/command_push.c commands/command_reverse_rot.c \
 				commands/command_rotate.c commands/command_swap.c \
-				sorting/selection-sort.c  sorting/bucket-sort.c\
-				sorting/adaptive.c build_stack/test_stack.c\
-				sorting/utils.c sorting/radix-sort.c\
+				sorting/selection-sort.c  sorting/bucket-sort.c \
+				sorting/adaptive.c build_stack/test_stack.c \
+				sorting/utils.c sorting/radix-sort.c \
 				print_container.c
 
 

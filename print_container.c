@@ -6,19 +6,20 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 10:58:37 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/23 11:13:26 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/24 09:52:38 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_container	init_container(float disorder)
+t_container	init_container(float disorder, bool checker)
 {
 	int			disorder_formatted;
 	t_container	c;
 
 	disorder_formatted = (int)(disorder * 10000);
 	c.disorder = disorder_formatted;
+	c.checker = checker;
 	c.flag = FLAG_ADAPTIVE;
 	c.pa = 0;
 	c.pb = 0;
@@ -44,12 +45,12 @@ const char	*init_flag_strategy(t_container container, t_config config)
 		return ("Complex / O(n log n)");
 	else if (config.flag == FLAG_ADAPTIVE)
 	{
-		if (container.disorder < 0.2)
-			return ("Adaptive / O(n^2)");
-		else if (container.disorder < 0.5)
-			return ("Adaptive / O(n^2)");
+		if (container.disorder < 2000)
+			return ("Adaptive -> Simple / O(n^2)");
+		else if (container.disorder < 5000)
+			return ("Adaptive -> Medium / O(n√n)");
 		else
-			return ("Adaptive / O(n log n)");
+			return ("Adaptive -> Complex / O(n log n)");
 	}
 	return (NULL);
 }
@@ -63,13 +64,13 @@ void	print_container(t_container container, t_config config)
 	total_ops = container.sa + container.sb + container.ss + container.pa
 		+ container.pb + container.ra + container.rb + container.rr
 		+ container.rra + container.rrb + container.rrr;
-	ft_printf("[bench] disorder: %d.%d%%\n", (container.disorder / 100),
+	ft_printf(2, "[bench] disorder: %d.%d%%\n", (container.disorder / 100),
 		(container.disorder % 100));
-	ft_printf("[bench] strategy: %s\n", flag_strategy);
-	ft_printf("[bench] total ops: %u\n", total_ops);
-	ft_printf("[bench] sa: %u, sb: %u, ss: %u, pa: %u, pb: %u,\n", container.sa,
-		container.sb, container.ss, container.pa, container.pb);
-	ft_printf("[bench] ra: %u, rb: %u, rr: %u, rra: %u, rrb: %u, rrr: %u\n",
+	ft_printf(2, "[bench] strategy: %s\n", flag_strategy);
+	ft_printf(2, "[bench] total ops: %u\n", total_ops);
+	ft_printf(2, "[bench] sa: %u, sb: %u, ss: %u, pa: %u, pb: %u,\n",
+		container.sa, container.sb, container.ss, container.pa, container.pb);
+	ft_printf(2, "[bench] ra: %u, rb: %u, rr: %u, rra: %u, rrb: %u, rrr: %u\n",
 		container.ra, container.rb, container.rr, container.rra, container.rrb,
 		container.rrr);
 }

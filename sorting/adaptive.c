@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 10:33:18 by dpetutsc          #+#    #+#             */
-/*   Updated: 2026/07/23 10:51:47 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/24 09:37:46 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,10 @@ float	compute_disorder(t_stack_node **a)
 void	sort_stack(t_stack_node **a, t_config cfg, float disorder)
 {
 	t_container	container;
+	bool		checker;
 
-	container = init_container(disorder);
+	checker = true;
+	container = init_container(disorder, checker);
 	if (disorder != 0)
 	{
 		if (cfg.flag == FLAG_SIMPLE)
