@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 10:30:32 by dpetutsc          #+#    #+#             */
-/*   Updated: 2026/07/23 21:01:07 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/24 09:40:20 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	calculate_bits(int n)
 	return (bits);
 }
 
-void	radix_sort(t_stack_node **a, t_container *container, bool checker)
+void	radix_sort(t_stack_node **a, t_container *container)
 {
 	t_stack_node	*b;
 	int				bits;
@@ -45,13 +45,13 @@ void	radix_sort(t_stack_node **a, t_container *container, bool checker)
 		while (i < len)
 		{
 			if ((((*a)->index >> bit) & 1) == 0)
-				pb(&b, a, checker, container);
+				pb(&b, a, container);
 			else
-				ra(a, checker, container);
+				ra(a, container);
 			i++;
 		}
 		while (b)
-			pa(a, &b, checker, container);
+			pa(a, &b, container);
 		bit++;
 	}
 }

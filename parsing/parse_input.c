@@ -6,35 +6,11 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 18:34:17 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/23 21:26:18 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/24 09:57:02 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-t_flag	check_flag(char *flag)
-{
-	if (!flag)
-		return (FLAG_INVALID);
-	if (ft_strncmp(flag, "--simple", 9) == 0)
-		return (FLAG_SIMPLE);
-	if (ft_strncmp(flag, "--medium", 9) == 0)
-		return (FLAG_MEDIUM);
-	if (ft_strncmp(flag, "--complex", 10) == 0)
-		return (FLAG_COMPLEX);
-	if (ft_strncmp(flag, "--adaptive", 11) == 0)
-		return (FLAG_ADAPTIVE);
-	return (FLAG_INVALID);
-}
-
-t_bench	check_bench(char *bench)
-{
-	if (!bench)
-		return (FLAG_BENCH_INVALID);
-	if (ft_strncmp(bench, "--bench", 8) == 0)
-		return (FLAG_BENCH);
-	return (FLAG_BENCH_INVALID);
-}
 
 static void	set_config_flag(t_config *cfg, char *arg)
 {
@@ -52,7 +28,7 @@ static void	set_config_flag(t_config *cfg, char *arg)
 t_config	parse_config(int argc, char **argv)
 {
 	t_config	cfg;
-	int		i;
+	int			i;
 
 	cfg.flag = FLAG_ADAPTIVE;
 	cfg.bench = FLAG_BENCH_INVALID;
@@ -76,14 +52,11 @@ char	*join_args(int argc, char **argv, int start)
 	char	*tmp;
 	int		i;
 
-	result = NULL;
+	result = ft_strdup("");
 	i = start;
 	while (i < argc)
 	{
-		if (result)
-			tmp = ft_strjoin(result, argv[i]);
-		else
-			tmp = ft_strjoin("", argv[i]);
+		tmp = ft_strjoin(result, argv[i]);
 		free(result);
 		result = tmp;
 		if (!result)

@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:27:42 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/23 20:54:27 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/24 10:01:22 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	print_tokens(char **t)
 	i = 0;
 	while (t[i])
 	{
-		printf(1, "[%d] '%s'\n", i, t[i]);
+		ft_printf(1, "[%d] '%s'\n", i, t[i]);
 		i++;
 	}
-	printf("\n----\n\n");
+	ft_printf(1, "\n----\n\n");
 }
 
 void	print_config(t_config cfg)

@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:40:04 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/23 20:53:04 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/24 09:52:18 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	print_stack_variant(t_stack_node *stack)
 	ft_printf(1, "\n----- STACK -----\n");
 	while (stack)
 	{
-		ft_printf(1, "[%d] value=%d | index=%d\n", i, stack->value, stack->index);
+		ft_printf(1, "[%d] value=%d | index=%d\n",
+			i, stack->value, stack->index);
 		stack = stack->next;
 		i++;
 	}
