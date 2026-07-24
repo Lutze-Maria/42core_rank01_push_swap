@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 09:56:35 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/24 10:01:47 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/24 10:59:19 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ t_flag	check_flag(char *flag)
 t_bench	check_bench(char *bench)
 {
 	if (!bench)
-		return (FLAG_BENCH_INVALID);
+		return (NO_FLAG_BENCH);
 	if (ft_strncmp(bench, "--bench", 8) == 0)
 		return (FLAG_BENCH);
-	return (FLAG_BENCH_INVALID);
+	return (NO_FLAG_BENCH);
 }

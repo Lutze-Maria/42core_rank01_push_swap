@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:47:17 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/24 10:06:42 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/24 10:59:29 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,15 @@ typedef enum e_flag
 typedef enum e_bench
 {
 	FLAG_BENCH,
-	FLAG_BENCH_INVALID,
+	NO_FLAG_BENCH,
 }						t_bench;
 
 typedef struct s_config
 {
 	t_flag				flag;
 	t_bench				bench;
+	int					flag_already_set;
+	int					bench_already_set;
 	int					start;
 }						t_config;
 
