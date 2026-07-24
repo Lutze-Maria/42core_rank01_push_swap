@@ -2,7 +2,7 @@
 # push_swap
 
 
-# Description
+## Description
 `push_swap` is an algorithmic sorting project from the 42 curriculum.
 
 The objective of this project is to sort a stack of integers using a restricted set of stack operations while minimizing the number of instructions generated.
@@ -25,9 +25,9 @@ This implementation includes several sorting strategies:
 Additionally, the program includes a benchmarking mode (`--bench`) which collects statistics about the sorting process, including the number of operations performed and the selected strategy.
 
 
-# Instructions
+## Instructions
 
-## Compilation
+### Compilation
 
 The project compiles with the flags `-Wall`, `-Wextra`, and `-Werror`, using `cc`.
 The Makefile contains the following rules:
@@ -39,7 +39,7 @@ The Makefile contains the following rules:
 
 ---
 
-## Execution
+### Execution
 
 The program is executed by passing integers as arguments. They can be passed as individual integers, or as one string. :
 
@@ -65,7 +65,7 @@ If the input is already sorted, no output is produced.
 
 ---
 
-## Available Flags
+### Available Flags
 
 One flag can be used to select the sorting strategy. If no strategy flag is provided, the program defaults to the Adaptive strategy.
 In addition, the Benchmark flag can be used to display additional information about the sorting process.
@@ -135,7 +135,7 @@ Example:
 
 ---
 
-## Testing with random inputs
+### Testing with random inputs
 
 Generate random numbers:
 
@@ -150,21 +150,20 @@ python3 -c "import random; print(' '.join(map(str, random.sample(range(-1000, 10
 
 ---
 
-# Resources
+## Resources
 
 The following resources were used to understand algorithmic complexity and implementation strategies:
 
 - GeeksForGeeks — Sorting Algorithms  
   https://www.geeksforgeeks.org/sorting-algorithms/
 
-  Used for:
-  - comparing sorting approaches,
-  - understanding complexity trade-offs,
-  - reviewing implementation concepts.
+ Used for:
+	- comparing sorting approaches,
+	- understanding complexity trade-offs,
+	- reviewing implementation concepts.
 
-...
-...
-...
+- Search-engines (duckduckgo, google etc.)
+- LLMs in a search-engine-like as well as expainer function.
 
 ---
 
@@ -174,8 +173,9 @@ The following resources were used to understand algorithmic complexity and imple
 
 The simple strategy is designed for small input sizes.
 
-It uses a quadratic-time sorting method where each element is repeatedly compared and moved until the stack reaches the correct order.
+It uses selection sort which works by searching for the next element and moves it to its position.
 
+e.g.: 5 4 1 -> 1 5 4 -> 1 4 5
 ### Advantages
 
 - Simple implementation.
@@ -194,7 +194,9 @@ For small datasets, the simplicity of this approach outweighs its complexity.
 
 The medium strategy divides the problem into smaller sections.
 
-Instead of treating the stack as one large unsorted structure, the algorithm works with groups of elements, reducing unnecessary movements.
+It uses a bucket sort presorting the values into multiple "buckets" before sorting those buckets. This reduces the amount of moves by reducing distance between the values close to each other and by searching for a range instead of a value in the presort.
+
+e.g.: 10 8 4 5 6 9 1 2-> presort 4 5 2 1; 6 9 12 19 -> 1 2 4 5 6 9 12 19
 
 ### Advantages
 
@@ -210,9 +212,18 @@ Instead of treating the stack as one large unsorted structure, the algorithm wor
 
 ## Complex Strategy — O(n log n)
 
-The complex strategy uses a divide-and-conquer approach.
+The complex sort uses a LSB-Radix which makes the amount of moves necessary more or less constant (for same n) This is good for larger amounts of data but can be less optimal for very small datasets.
 
-The input is progressively divided into smaller sections, processed, and recombined efficiently.
+It works by checking the least significant byte and putting all those who match into two "buckets"  (smaller values before bigger values) eg. first 0s then 1s (for sorting from smallest to biggest).
+
+I will use the decimal version for the example:
+
+1. We sort the values by the ones position:
+	-  34, 28, 39, 23, 38, 29, 24, 35 -> 23, 34, 24, 35, 28, 38, 39, 29
+2. Next we sort by the tens position:
+	- 23, 24, 28, 29, 34, 35, 38, 39
+
+This leads to us only needing x passes where x is the number of digits in the largest value. In the example when we sort the tens position we now for certain that we can just move them over in the order we find them in since the ones position has already been ordered.
 
 ### Advantages
 
