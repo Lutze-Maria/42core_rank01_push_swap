@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 09:56:35 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/24 10:59:19 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/24 12:41:19 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_flag	check_flag(char *flag)
 {
 	if (!flag)
-		return (FLAG_INVALID);
+		return (NO_FLAG);
 	if (ft_strncmp(flag, "--simple", 9) == 0)
 		return (FLAG_SIMPLE);
 	if (ft_strncmp(flag, "--medium", 9) == 0)
@@ -24,7 +24,7 @@ t_flag	check_flag(char *flag)
 		return (FLAG_COMPLEX);
 	if (ft_strncmp(flag, "--adaptive", 11) == 0)
 		return (FLAG_ADAPTIVE);
-	return (FLAG_INVALID);
+	return (NO_FLAG);
 }
 
 t_bench	check_bench(char *bench)

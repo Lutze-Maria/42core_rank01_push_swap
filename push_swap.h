@@ -6,7 +6,7 @@
 /*   By: lschawer <lschawer@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:47:17 by lschawer          #+#    #+#             */
-/*   Updated: 2026/07/24 10:59:29 by lschawer         ###   ########.fr       */
+/*   Updated: 2026/07/24 12:34:44 by lschawer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_stack_node
 
 typedef enum e_flag
 {
+	NO_FLAG,
 	FLAG_SIMPLE,
 	FLAG_MEDIUM,
 	FLAG_COMPLEX,
@@ -47,8 +48,6 @@ typedef struct s_config
 {
 	t_flag				flag;
 	t_bench				bench;
-	int					flag_already_set;
-	int					bench_already_set;
 	int					start;
 }						t_config;
 
